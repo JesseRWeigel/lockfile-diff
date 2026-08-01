@@ -1,0 +1,113 @@
+name: Lockfile diff
+description: >-
+  Diff package-lock.json or pnpm-lock.yaml between the base and head of a pull request and post
+  a comment answering what is new, what changed major, what changed transitively, what changed
+  maintainer, and the total install size delta.
+author: lockfile-diff
+
+inputs:
+  path:
+    description: Path to the lockfile, relative to the repository root.
+    required: false
+    default: package-lock.json
+  base-ref:
+    description: Git ref for the base side. Defaults to the pull request base sha.
+    required: false
+    default: ''
+  head-ref:
+    description: Git ref for the head side. Defaults to the pull request head sha.
+    required: false
+    default: ''
+  fail-on:
+    description: >-
+      Comma-separated gates that make the step fail: major, downgrade, maintainer, new, any.
+      Empty means never fail on the contents of the diff.
+    required: false
+    default: ''
+  registry:
+    description: npm registry base URL.
+    required: false
+    default: https://registry.npmjs.org
+  comment:
+    description: Post the result as a pull request comment. Set to false to only write the file.
+    required: false
+    default: 'true'
+  title:
+    description: Heading used in the comment.
+    required: false
+    default: Lockfile diff
+
+outputs:
+  markdown-file:
+    description: Path to the generated markdown comment.
+    value: ${{ steps.diff.outputs.markdown-file }}
+  json-file:
+    description: Path to the generated JSON report.
+    value: ${{ steps.diff.outputs.json-file }}
+  changes:
+    description: Total number of changes found.
+    value: ${{ steps.diff.outputs.changes }}
+
+runs:
+  using: composite
+  steps:
+    - id: diff
+      shell: bash
+      env:
+        LOCKFILE_PATH: ${{ inputs.path }}
+        BASE_REF: ${{ inputs.base-ref || github.event.pull_request.base.sha }}
+        HEAD_REF: ${{ inputs.head-ref || github.event.pull_request.head.sha }}
+        REGISTRY_URL: ${{ inputs.registry }}
+        TITLE: ${{ inputs.title }}
+        ACTION_PATH: ${{ github.action_path }}
+      run: |
+        set -euo pipefail
+        out="${RUNNER_TEMP}/lockfile-diff.md"
+        json="${RUNNER_TEMP}/lockfile-diff.json"
+        cache="${RUNNER_TEMP}/lockfile-diff-cache"
+        # The registry cache is keyed by name@version, so it is safe to reuse across runs and
+        # across repositories. actions/cache it if you want to, nothing here depends on it.
+        node "${ACTION_PATH}/bin/lockfile-diff.js" \
+          --repo . --base "$BASE_REF" --head "$HEAD_REF" --path "$LOCKFILE_PATH" \
+          --registry "$REGISTRY_URL" --cache-dir "$cache" \
+          --title "$TITLE" --format md --out "$out"
+        node "${ACTION_PATH}/bin/lockfile-diff.js" \
+          --repo . --base "$BASE_REF" --head "$HEAD_REF" --path "$LOCKFILE_PATH" \
+          --registry "$REGISTRY_URL" --cache-dir "$cache" \
+          --format json --out "$json"
+        {
+          echo "markdown-file=$out"
+          echo "json-file=$json"
+          echo "changes=$(node -e 'process.stdout.write(String(require(process.argv[1]).counts.total))' "$json")"
+        } >> "$GITHUB_OUTPUT"
+        cat "$out" >> "$GITHUB_STEP_SUMMARY"
+
+    - name: Comment on the pull request
+      if: ${{ inputs.comment == 'true' && github.event_name == 'pull_request' }}
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+        BODY_FILE: ${{ steps.diff.outputs.markdown-file }}
+      run: |
+        set -euo pipefail
+        # Every value reaching the shell comes through env, never through ${{ }} interpolation
+        # inside the script, which is how workflow command injection happens.
+        gh pr comment "$PR_NUMBER" --body-file "$BODY_FILE" --edit-last --create-if-none
+
+    - name: Apply the failure gates
+      if: ${{ inputs.fail-on != '' }}
+      shell: bash
+      env:
+        LOCKFILE_PATH: ${{ inputs.path }}
+        BASE_REF: ${{ inputs.base-ref || github.event.pull_request.base.sha }}
+        HEAD_REF: ${{ inputs.head-ref || github.event.pull_request.head.sha }}
+        FAIL_ON: ${{ inputs.fail-on }}
+        ACTION_PATH: ${{ github.action_path }}
+      run: |
+        set -euo pipefail
+        # Re-run against the cache that the first step filled, so this costs no extra requests.
+        node "${ACTION_PATH}/bin/lockfile-diff.js" \
+          --repo . --base "$BASE_REF" --head "$HEAD_REF" --path "$LOCKFILE_PATH" \
+          --cache-dir "${RUNNER_TEMP}/lockfile-diff-cache" --offline \
+          --format text --fail-on "$FAIL_ON"

@@ -52,10 +52,19 @@ export function describeChange(change) {
   }
 }
 
+/**
+ * Keep a git URL or a long tarball path from taking over the table, while preserving the tail,
+ * which is where the commit sha lives and therefore where the difference is.
+ */
+export function shortenVersion(value, limit = 44) {
+  const s = String(value);
+  if (s.length <= limit) return s;
+  return `${s.slice(0, limit - 15)}...${s.slice(-12)}`;
+}
+
 function versionCell(change) {
-  if (change.type === 'bumped') return `${change.from} -> ${change.to}`;
-  if (change.type === 'resolution-changed') return change.version;
-  return change.version;
+  if (change.type === 'bumped') return `${shortenVersion(change.from)} -> ${shortenVersion(change.to)}`;
+  return shortenVersion(change.version);
 }
 
 /** Cap a maintainer list so one package with 50 maintainers cannot eat the whole comment. */
@@ -173,7 +182,8 @@ export function renderMarkdown(report, { title = 'Lockfile diff', maxRows = 60 }
     if (zero.length) {
       lines.push('');
       lines.push(
-        `${zero.length} of these are 0.x minor bumps (${zero.map((x) => `\`${x.name}\``).join(', ')}). `
+        `${zero.length} of these ${zero.length === 1 ? 'is a' : 'are'} 0.x minor `
+        + `${zero.length === 1 ? 'bump' : 'bumps'} (${zero.map((x) => `\`${x.name}\``).join(', ')}). `
         + 'A minor bump below 1.0.0 is a breaking change under npm caret ranges, so they are '
         + 'listed here rather than under minor.',
       );

@@ -1,0 +1,42 @@
+name: Lockfile diff
+
+# Comments on any pull request that touches a lockfile. `pull_request` (not
+# `pull_request_target`) is deliberate: this workflow never needs the head repository's secrets,
+# and running untrusted head code with a writable token is how Actions supply-chain incidents
+# start. The only write it needs is the comment, granted explicitly below.
+on:
+  pull_request:
+    paths:
+      - '**/package-lock.json'
+      - '**/pnpm-lock.yaml'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  lockfile-diff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Both sides of the diff are read with `git show`, so both commits must be present.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Cache npm registry lookups
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/lockfile-diff-cache
+          key: lockfile-diff-registry-${{ github.run_id }}
+          restore-keys: lockfile-diff-registry-
+
+      - name: Diff the lockfile and comment
+        uses: ./
+        with:
+          path: package-lock.json
+          # Uncomment to block the pull request on a package changing hands:
+          # fail-on: maintainer
