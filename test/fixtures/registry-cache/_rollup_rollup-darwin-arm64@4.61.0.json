@@ -1,0 +1,15 @@
+{
+  "status": "ok",
+  "manifest": {
+    "maintainers": [
+      "guybedford",
+      "lukastaegert",
+      "rich_harris",
+      "shellscape"
+    ],
+    "publisher": "GitHub Actions",
+    "unpackedSize": 1780893,
+    "fileCount": 3,
+    "deprecated": null
+  }
+}

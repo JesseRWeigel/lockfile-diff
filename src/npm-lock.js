@@ -54,6 +54,18 @@ function unitVersion(entry) {
   return null;
 }
 
+/**
+ * True for the prebuilt binaries that npm and pnpm list once per platform and install at most
+ * one of. They matter because summing all of them makes an install-size delta wildly wrong:
+ * a real diff in this repo's docs shows +55 MB, of which +53 MB is sixteen copies of the same
+ * bundler binary for sixteen platforms.
+ */
+export function isPlatformSpecific(entry) {
+  if (!entry || typeof entry !== 'object') return false;
+  const constrained = Array.isArray(entry.os) || Array.isArray(entry.cpu) || Array.isArray(entry.libc);
+  return constrained && (entry.optional === true || entry.devOptional === true);
+}
+
 function directNamesOf(manifest) {
   const names = new Set();
   for (const field of MANIFEST_FIELDS) {
@@ -79,6 +91,7 @@ function walkLegacyTree(tree, prefix, out, dev) {
       dev: Boolean(node.dev ?? dev),
       optional: Boolean(node.optional),
       hasInstallScript: Boolean(node.hasInstallScript),
+      platformSpecific: isPlatformSpecific(node),
     });
     walkLegacyTree(node.dependencies, `${path}/`, out, Boolean(node.dev ?? dev));
   }
@@ -147,6 +160,7 @@ export function parseNpmLock(text, file = 'package-lock.json') {
         dev: Boolean(entry.dev || entry.devOptional),
         optional: Boolean(entry.optional),
         hasInstallScript: Boolean(entry.hasInstallScript),
+        platformSpecific: isPlatformSpecific(entry),
       });
     }
     if (importers.length === 0) {
@@ -206,6 +220,7 @@ export function parseNpmLock(text, file = 'package-lock.json') {
  *   reporting a direct dependency as transitive would be worse.
  */
 export function buildLockfile({ format, lockfileVersion, importers, installed, warnings, file }) {
+  // SABOTAGE-POINT: buildLockfile
   const byPath = new Map(installed.map((e) => [e.path, e]));
   const direct = new Set();
 
@@ -252,6 +267,7 @@ export function buildLockfile({ format, lockfileVersion, importers, installed, w
         dev: true,
         optional: true,
         hasInstallScript: false,
+        platformSpecific: false,
         resolved: entry.resolved,
       };
       units.set(key, unit);
@@ -263,6 +279,7 @@ export function buildLockfile({ format, lockfileVersion, importers, installed, w
     unit.dev = unit.dev && entry.dev;
     unit.optional = unit.optional && entry.optional;
     unit.hasInstallScript = unit.hasInstallScript || entry.hasInstallScript;
+    unit.platformSpecific = unit.platformSpecific || Boolean(entry.platformSpecific);
     if (!unit.resolved && entry.resolved) unit.resolved = entry.resolved;
   }
   for (const unit of units.values()) unit.paths.sort();

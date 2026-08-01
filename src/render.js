@@ -124,8 +124,13 @@ function sizeSentence(report) {
     ? ` This is a **lower bound**: ${size.unknownVersions} version(s) had no \`dist.unpackedSize\` `
       + 'in the registry and contribute 0 to the total rather than being guessed at.'
     : '';
+  const platform = size.platformPackages > 0
+    ? ` Of that, ${formatDelta(size.platformBytes)} is in ${size.platformPackages} platform-specific `
+      + 'optional package(s) (os/cpu constrained prebuilt binaries). npm downloads at most one of '
+      + `each set, so a single machine sees closer to **${formatDelta(size.netOnOnePlatform)}**.`
+    : '';
   return `**${formatDelta(size.net)}** (added ${formatBytes(size.bytesAdded)}, `
-    + `removed ${formatBytes(size.bytesRemoved)}). Measured as the ${size.basis}.${bound}`;
+    + `removed ${formatBytes(size.bytesRemoved)}). Measured as the ${size.basis}.${platform}${bound}`;
 }
 
 export function renderMarkdown(report, { title = 'Lockfile diff', maxRows = 60 } = {}) {
@@ -305,7 +310,13 @@ export function renderText(report) {
     + `(${c.major} major, ${c.minor} minor, ${c.patch} patch, ${c.prerelease} prerelease, `
     + `${c.unclassifiable} unclassified), ${c.direct} direct, ${c.transitive} transitive`,
   );
-  lines.push(`size delta: ${formatDelta(report.size?.net)}${report.size?.lowerBound ? ' (lower bound)' : ''}`);
+  lines.push(
+    `size delta: ${formatDelta(report.size?.net)}${report.size?.lowerBound ? ' (lower bound)' : ''}`
+    + (report.size?.platformPackages
+      ? `, of which ${formatDelta(report.size.platformBytes)} is platform-specific binaries `
+        + `(${formatDelta(report.size.netOnOnePlatform)} on any one machine)`
+      : ''),
+  );
   lines.push('');
   const width = Math.min(40, Math.max(...report.changes.map((x) => x.name.length)));
   for (const change of report.changes) {

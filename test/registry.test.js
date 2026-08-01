@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { Registry, cacheKey, slimManifest } from '../src/registry.js';
+import { isPlatformSpecific } from '../src/npm-lock.js';
 import { enrich, enrichOffline } from '../src/enrich.js';
 import { CACHE, diffFixtures, enrichedDiff, findChange, offlineRegistry } from './helpers.js';
 
@@ -187,4 +188,32 @@ test('the committed cache is complete enough that the offline suite is not vacuo
   assert.equal(report.registry.fetched, 0, 'the offline suite must not fetch anything');
   assert.ok(report.registry.cacheHits >= 18, `only ${report.registry.cacheHits} cache hits`);
   assert.ok(fs.readdirSync(CACHE).length >= 18);
+});
+
+test('platform-specific prebuilt binaries are counted separately from the real delta', async () => {
+  // A lockfile lists one prebuilt binary per platform and installs at most one, so summing all
+  // of them produces a number no machine ever sees. Real case in docs/data.json: +55 MB total,
+  // +53 MB of it sixteen builds of one bundler binary.
+  const report = await enrichedDiff('platform/base.json', 'platform/head.json');
+  assert.equal(report.counts.platformSpecific, 2);
+  assert.equal(report.size.platformPackages, 2);
+  assert.equal(report.size.net, (2068183 - 2035351) + (1780893 - 1764349));
+  assert.equal(report.size.platformBytes, report.size.net);
+  assert.equal(report.size.netOnOnePlatform, 0);
+  for (const change of report.changes) assert.equal(change.platformSpecific, true);
+
+  // picocolors is not platform-constrained, so it must not be swept into the same bucket.
+  const plain = await enrichedDiff('npm-v3/base.json', 'npm-v3/head.json');
+  assert.equal(plain.counts.platformSpecific, 0);
+  assert.equal(plain.size.platformPackages, 0);
+  assert.equal(plain.size.netOnOnePlatform, plain.size.net);
+});
+
+test('isPlatformSpecific needs both an os/cpu constraint and optionality', () => {
+  assert.equal(isPlatformSpecific({ os: ['linux'], cpu: ['x64'], optional: true }), true);
+  assert.equal(isPlatformSpecific({ os: ['linux'], devOptional: true }), true);
+  assert.equal(isPlatformSpecific({ libc: ['glibc'], optional: true }), true);
+  assert.equal(isPlatformSpecific({ os: ['linux'] }), false, 'constrained but not optional');
+  assert.equal(isPlatformSpecific({ optional: true }), false, 'optional but not constrained');
+  assert.equal(isPlatformSpecific(null), false);
 });

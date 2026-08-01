@@ -19,7 +19,7 @@
  */
 import { LockfileError } from './errors.js';
 import { parseYamlSubset } from './yaml.js';
-import { buildLockfile } from './npm-lock.js';
+import { buildLockfile, isPlatformSpecific } from './npm-lock.js';
 
 const DEP_FIELDS = ['dependencies', 'devDependencies', 'optionalDependencies'];
 const PROD_FIELDS = ['dependencies', 'optionalDependencies'];
@@ -232,6 +232,7 @@ export function parsePnpmLock(text, file = 'pnpm-lock.yaml') {
       dev,
       optional: entry.optional === true,
       hasInstallScript: entry.requiresBuild === true,
+      platformSpecific: isPlatformSpecific(entry),
       direct: false,
     });
   }
@@ -252,6 +253,7 @@ export function parsePnpmLock(text, file = 'pnpm-lock.yaml') {
         dev: !pin.prod,
         optional: false,
         hasInstallScript: false,
+        platformSpecific: false,
         direct: true,
       });
     }

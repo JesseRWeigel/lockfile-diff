@@ -93,6 +93,7 @@ export function describeNonSemver(version) {
  * a breaking change by npm's caret rules and reviewers should treat it like a major.
  */
 export function classifyChange(from, to) {
+  // SABOTAGE-POINT: classifyChange
   if (from === to) return { kind: 'none', direction: null, reason: null, zeroMajor: false };
   const a = parseSemver(from);
   const b = parseSemver(to);

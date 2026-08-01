@@ -1,0 +1,5018 @@
+{
+ "generated": "2026-08-01",
+ "datasets": [
+  {
+   "key": "jw",
+   "label": "jesseweigel.com",
+   "blurb": "A real portfolio rebuild: Three.js dropped, Vercel analytics added, Next.js patched.",
+   "source": "f2c8564..a6deb9d · package-lock.json",
+   "raw": {
+    "added": 1258,
+    "removed": 975
+   },
+   "report": {
+    "base": {
+     "format": "package-lock.json",
+     "lockfileVersion": "3",
+     "file": "f2c8564:package-lock.json",
+     "packages": 964,
+     "direct": 35,
+     "transitive": 929,
+     "importers": 1
+    },
+    "head": {
+     "format": "package-lock.json",
+     "lockfileVersion": "3",
+     "file": "a6deb9d:package-lock.json",
+     "packages": 940,
+     "direct": 32,
+     "transitive": 908,
+     "importers": 1
+    },
+    "changes": [
+     {
+      "type": "bumped",
+      "name": "@babel/helper-compilation-targets",
+      "from": "7.28.6",
+      "to": "7.29.7",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 0,
+       "from": 53791,
+       "to": 53791,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@babel/helper-globals",
+      "from": "7.28.0",
+      "to": "7.29.7",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "publisher-changed",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "nicolo-ribaudo",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 0,
+       "from": 23079,
+       "to": 23079,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@babel/helper-module-imports",
+      "from": "7.28.6",
+      "to": "7.29.7",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 0,
+       "from": 63720,
+       "to": 63720,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@babel/helper-module-transforms",
+      "from": "7.28.6",
+      "to": "7.29.7",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 0,
+       "from": 161712,
+       "to": 161712,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@babel/helper-string-parser",
+      "from": "7.27.1",
+      "to": "7.29.7",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "publisher-changed",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "nicolo-ribaudo",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 0,
+       "from": 31816,
+       "to": 31816,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@babel/helper-validator-identifier",
+      "from": "7.28.5",
+      "to": "7.29.7",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 0,
+       "from": 48813,
+       "to": 48813,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@babel/helper-validator-option",
+      "from": "7.27.1",
+      "to": "7.29.7",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "publisher-changed",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "nicolo-ribaudo",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 0,
+       "from": 11775,
+       "to": 11775,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@babel/template",
+      "from": "7.28.6",
+      "to": "7.29.7",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 0,
+       "from": 70678,
+       "to": 70678,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@oxc-project/types",
+      "from": "0.122.0",
+      "to": "0.139.0",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": true,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 76,
+       "from": 44501,
+       "to": 44577,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/binding-android-arm64",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -3226286,
+       "from": 20487663,
+       "to": 17261377,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/binding-darwin-arm64",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -3260070,
+       "from": 19605241,
+       "to": 16345171,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/binding-darwin-x64",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -3673246,
+       "from": 20805562,
+       "to": 17132316,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/binding-freebsd-x64",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -3853406,
+       "from": 22980270,
+       "to": 19126864,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/binding-linux-arm-gnueabihf",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -3252246,
+       "from": 18807559,
+       "to": 15555313,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/binding-linux-arm64-gnu",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -3231950,
+       "from": 20482358,
+       "to": 17250408,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/binding-linux-arm64-musl",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -3243334,
+       "from": 20536386,
+       "to": 17293052,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/binding-linux-ppc64-gnu",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -4657286,
+       "from": 26381050,
+       "to": 21723764,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/binding-linux-s390x-gnu",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -3887390,
+       "from": 23853324,
+       "to": 19965934,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/binding-linux-x64-gnu",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -3871046,
+       "from": 23001947,
+       "to": 19130901,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/binding-linux-x64-musl",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -3875390,
+       "from": 23054727,
+       "to": 19179337,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/binding-openharmony-arm64",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -3261126,
+       "from": 20514760,
+       "to": 17253634,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/binding-wasm32-wasi",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -1575702,
+       "from": 11991910,
+       "to": 10416208,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/binding-win32-arm64-msvc",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -3232774,
+       "from": 20980619,
+       "to": 17747845,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/binding-win32-x64-msvc",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -3803142,
+       "from": 24314240,
+       "to": 20511098,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "express-rate-limit",
+      "from": "8.3.1",
+      "to": "8.5.2",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 5047,
+       "from": 141285,
+       "to": 146332,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "ip-address",
+      "from": "10.1.0",
+      "to": "10.2.0",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "beaugunderson",
+       "publisherAfter": "beaugunderson"
+      },
+      "size": {
+       "delta": 89593,
+       "from": 180364,
+       "to": 269957,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "js-yaml",
+      "from": "4.1.1",
+      "to": "4.3.0",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "vitaly",
+       "publisherAfter": "vitaly"
+      },
+      "size": {
+       "delta": 571301,
+       "from": 386271,
+       "to": 957572,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "js-yaml",
+      "from": "3.14.2",
+      "to": "3.15.0",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "vitaly",
+       "publisherAfter": "vitaly"
+      },
+      "size": {
+       "delta": 1157,
+       "from": 275733,
+       "to": 276890,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "postcss",
+      "from": "8.4.31",
+      "to": "8.5.19",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "publisher-changed",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "ai",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 18306,
+       "from": 196517,
+       "to": 214823,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "rolldown",
+      "from": "1.0.0-rc.12",
+      "to": "1.1.5",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 26365,
+       "from": 759550,
+       "to": 785915,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "undici",
+      "from": "7.24.6",
+      "to": "7.28.0",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 13210,
+       "from": 1608018,
+       "to": 1621228,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "vite",
+      "from": "8.0.3",
+      "to": "8.1.4",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [],
+       "removed": [
+        "antfu",
+        "patak"
+       ],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 64863,
+       "from": 2180220,
+       "to": 2245083,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@babel/code-frame",
+      "from": "7.29.0",
+      "to": "7.29.7",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 0,
+       "from": 34632,
+       "to": 34632,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@babel/compat-data",
+      "from": "7.29.0",
+      "to": "7.29.7",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 1058,
+       "from": 67149,
+       "to": 68207,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@babel/core",
+      "from": "7.29.0",
+      "to": "7.29.7",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 11026,
+       "from": 799525,
+       "to": 810551,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@babel/generator",
+      "from": "7.29.1",
+      "to": "7.29.7",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 1483,
+       "from": 537011,
+       "to": 538494,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@babel/helpers",
+      "from": "7.29.2",
+      "to": "7.29.7",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 0,
+       "from": 877305,
+       "to": 877305,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@babel/parser",
+      "from": "7.29.2",
+      "to": "7.29.7",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 1948,
+       "from": 1995536,
+       "to": 1997484,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@babel/traverse",
+      "from": "7.29.0",
+      "to": "7.29.7",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 0,
+       "from": 708125,
+       "to": 708125,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@babel/types",
+      "from": "7.29.0",
+      "to": "7.29.7",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 0,
+       "from": 2750097,
+       "to": 2750097,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@hono/node-server",
+      "from": "1.19.11",
+      "to": "1.19.14",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "yusukebe",
+       "publisherAfter": "yusukebe"
+      },
+      "size": {
+       "delta": 18444,
+       "from": 209899,
+       "to": 228343,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@napi-rs/wasm-runtime",
+      "from": "1.1.2",
+      "to": "1.1.6",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 20453,
+       "from": 6238631,
+       "to": 6259084,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@next/env",
+      "from": "16.2.1",
+      "to": "16.2.10",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [],
+       "removed": [
+        "rauchg",
+        "timer",
+        "timneutkens"
+       ],
+       "publisherBefore": "vercel-release-bot",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -54,
+       "from": 11811,
+       "to": 11757,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@next/eslint-plugin-next",
+      "from": "16.2.1",
+      "to": "16.2.10",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [],
+       "removed": [
+        "rauchg",
+        "timer",
+        "timneutkens"
+       ],
+       "publisherBefore": "vercel-release-bot",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -54,
+       "from": 98874,
+       "to": 98820,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@next/swc-darwin-arm64",
+      "from": "16.2.1",
+      "to": "16.2.10",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [],
+       "removed": [
+        "rauchg",
+        "timer",
+        "timneutkens"
+       ],
+       "publisherBefore": "vercel-release-bot",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 149265,
+       "from": 121624692,
+       "to": 121773957,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@next/swc-darwin-x64",
+      "from": "16.2.1",
+      "to": "16.2.10",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [],
+       "removed": [
+        "rauchg",
+        "timer",
+        "timneutkens"
+       ],
+       "publisherBefore": "vercel-release-bot",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 111065,
+       "from": 119626427,
+       "to": 119737492,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@next/swc-linux-arm64-gnu",
+      "from": "16.2.1",
+      "to": "16.2.10",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [],
+       "removed": [
+        "rauchg",
+        "timer",
+        "timneutkens"
+       ],
+       "publisherBefore": "vercel-release-bot",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 148865,
+       "from": 124784314,
+       "to": 124933179,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@next/swc-linux-arm64-musl",
+      "from": "16.2.1",
+      "to": "16.2.10",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [],
+       "removed": [
+        "rauchg",
+        "timer",
+        "timneutkens"
+       ],
+       "publisherBefore": "vercel-release-bot",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 145545,
+       "from": 125068751,
+       "to": 125214296,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@next/swc-linux-x64-gnu",
+      "from": "16.2.1",
+      "to": "16.2.10",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [],
+       "removed": [
+        "rauchg",
+        "timer",
+        "timneutkens"
+       ],
+       "publisherBefore": "vercel-release-bot",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 153089,
+       "from": 130153679,
+       "to": 130306768,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@next/swc-linux-x64-musl",
+      "from": "16.2.1",
+      "to": "16.2.10",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [],
+       "removed": [
+        "rauchg",
+        "timer",
+        "timneutkens"
+       ],
+       "publisherBefore": "vercel-release-bot",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 140665,
+       "from": 130087865,
+       "to": 130228530,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@next/swc-win32-arm64-msvc",
+      "from": "16.2.1",
+      "to": "16.2.10",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [],
+       "removed": [
+        "rauchg",
+        "timer",
+        "timneutkens"
+       ],
+       "publisherBefore": "vercel-release-bot",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 105473,
+       "from": 111651851,
+       "to": 111757324,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@next/swc-win32-x64-msvc",
+      "from": "16.2.1",
+      "to": "16.2.10",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [],
+       "removed": [
+        "rauchg",
+        "timer",
+        "timneutkens"
+       ],
+       "publisherBefore": "vercel-release-bot",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 169985,
+       "from": 136701445,
+       "to": 136871430,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@rolldown/pluginutils",
+      "from": "1.0.0-rc.12",
+      "to": "1.0.1",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 2114,
+       "from": 23579,
+       "to": 25693,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@tybys/wasm-util",
+      "from": "0.10.1",
+      "to": "0.10.3",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": true,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "toyobayashi",
+       "publisherAfter": "toyobayashi"
+      },
+      "size": {
+       "delta": 50195,
+       "from": 774885,
+       "to": 825080,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "brace-expansion",
+      "from": "5.0.5",
+      "to": "5.0.7",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "juliangruber",
+       "publisherAfter": "juliangruber"
+      },
+      "size": {
+       "delta": 3268,
+       "from": 47480,
+       "to": 50748,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "eslint-config-next",
+      "from": "16.2.1",
+      "to": "16.2.10",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "direct",
+      "scopeBefore": "direct",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "publisher-changed",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "vercel-release-bot",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -53,
+       "from": 14182,
+       "to": 14129,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "fast-uri",
+      "from": "3.1.0",
+      "to": "3.1.3",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "publisher-changed",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "gurgunday",
+       "publisherAfter": "matteo.collina"
+      },
+      "size": {
+       "delta": 11381,
+       "from": 146327,
+       "to": 157708,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "hono",
+      "from": "4.12.9",
+      "to": "4.12.30",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "publisher-changed",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "yusukebe",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -9702,
+       "from": 1364835,
+       "to": 1355133,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "nanoid",
+      "from": "3.3.11",
+      "to": "3.3.16",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "publisher-changed",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "ai",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -7869,
+       "from": 32583,
+       "to": 24714,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "next",
+      "from": "16.2.1",
+      "to": "16.2.10",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "direct",
+      "scopeBefore": "direct",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [
+        "matheuss",
+        "matt.straka"
+       ],
+       "removed": [],
+       "publisherBefore": "vercel-release-bot",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 855735,
+       "from": 154203160,
+       "to": 155058895,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "qs",
+      "from": "6.15.0",
+      "to": "6.15.3",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "ljharb",
+       "publisherAfter": "ljharb"
+      },
+      "size": {
+       "delta": 39567,
+       "from": 306988,
+       "to": 346555,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "side-channel",
+      "from": "1.1.0",
+      "to": "1.1.1",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "ljharb",
+       "publisherAfter": "ljharb"
+      },
+      "size": {
+       "delta": 1319,
+       "from": 21545,
+       "to": 22864,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "side-channel-list",
+      "from": "1.0.0",
+      "to": "1.0.1",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "ljharb",
+       "publisherAfter": "ljharb"
+      },
+      "size": {
+       "delta": 2232,
+       "from": 14741,
+       "to": 16973,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "tinyglobby",
+      "from": "0.2.15",
+      "to": "0.2.17",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": true,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "GitHub Actions",
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": -887,
+       "from": 40175,
+       "to": 39288,
+       "why": null
+      }
+     },
+     {
+      "type": "added",
+      "name": "@emnapi/core",
+      "version": "1.11.2",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "toyobayashi"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 2035613,
+       "from": null,
+       "to": 2035613,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@emnapi/runtime",
+      "version": "1.11.2",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "toyobayashi"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 433583,
+       "from": null,
+       "to": 433583,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/aix-ppc64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 12590419,
+       "from": null,
+       "to": 12590419,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/android-arm",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 13962282,
+       "from": null,
+       "to": 13962282,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/android-arm64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 11535115,
+       "from": null,
+       "to": 11535115,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/android-x64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 13962282,
+       "from": null,
+       "to": 13962282,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/darwin-arm64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 10574305,
+       "from": null,
+       "to": 10574305,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/darwin-x64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 11631379,
+       "from": null,
+       "to": 11631379,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/freebsd-arm64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 10289807,
+       "from": null,
+       "to": 10289807,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/freebsd-x64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 11350659,
+       "from": null,
+       "to": 11350659,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/linux-arm",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 10748523,
+       "from": null,
+       "to": 10748523,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/linux-arm64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 10289789,
+       "from": null,
+       "to": 10289789,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/linux-ia32",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 10752627,
+       "from": null,
+       "to": 10752627,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/linux-loong64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 11141773,
+       "from": null,
+       "to": 11141773,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/linux-mips64el",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 12321441,
+       "from": null,
+       "to": 12321441,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/linux-ppc64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 10945185,
+       "from": null,
+       "to": 10945185,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/linux-riscv64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 10093191,
+       "from": null,
+       "to": 10093191,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/linux-s390x",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 11469463,
+       "from": null,
+       "to": 11469463,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/linux-x64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 11407985,
+       "from": null,
+       "to": 11407985,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/netbsd-arm64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 10224538,
+       "from": null,
+       "to": 10224538,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/netbsd-x64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 11314033,
+       "from": null,
+       "to": 11314033,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/openbsd-arm64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 10289920,
+       "from": null,
+       "to": 10289920,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/openbsd-x64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 11350772,
+       "from": null,
+       "to": 11350772,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/openharmony-arm64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 13962306,
+       "from": null,
+       "to": 13962306,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/sunos-x64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 11350748,
+       "from": null,
+       "to": 11350748,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/win32-arm64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 10405393,
+       "from": null,
+       "to": 10405393,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/win32-ia32",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 11031047,
+       "from": null,
+       "to": 11031047,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@esbuild/win32-x64",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": true,
+      "hasInstallScript": false,
+      "platformSpecific": true,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 11671045,
+       "from": null,
+       "to": 11671045,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@vercel/analytics",
+      "version": "2.0.1",
+      "newPackage": true,
+      "scope": "direct",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "vercel-release-bot",
+        "zeit-bot"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "vercel-release-bot"
+      },
+      "size": {
+       "delta": 497331,
+       "from": null,
+       "to": 497331,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "@vercel/speed-insights",
+      "version": "2.0.0",
+      "newPackage": true,
+      "scope": "direct",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "vercel-release-bot",
+        "zeit-bot"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "vercel-release-bot"
+      },
+      "size": {
+       "delta": 366665,
+       "from": null,
+       "to": 366665,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "esbuild",
+      "version": "0.28.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": true,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "esbuild"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 146953,
+       "from": null,
+       "to": 146953,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "picomatch",
+      "version": "4.0.5",
+      "newPackage": false,
+      "scope": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "danez",
+        "doowb",
+        "jonschlinkert",
+        "mrmlnc"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "doowb"
+      },
+      "size": {
+       "delta": 92989,
+       "from": null,
+       "to": 92989,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "added",
+      "name": "tsx",
+      "version": "4.23.1",
+      "newPackage": true,
+      "scope": "direct",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "hirokiosame"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "GitHub Actions"
+      },
+      "size": {
+       "delta": 525087,
+       "from": null,
+       "to": 525087,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "removed",
+      "name": "@dimforge/rapier3d-compat",
+      "version": "0.12.0",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -7522790,
+       "from": 7522790,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "@mediapipe/tasks-vision",
+      "version": "0.10.17",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -20412943,
+       "from": 20412943,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "@monogrid/gainmap-js",
+      "version": "3.4.0",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -627288,
+       "from": 627288,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "@react-three/drei",
+      "version": "10.7.7",
+      "gonePackage": true,
+      "scope": "direct",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -1748706,
+       "from": 1748706,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "@react-three/fiber",
+      "version": "9.5.0",
+      "gonePackage": true,
+      "scope": "direct",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -2175216,
+       "from": 2175216,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "@tweenjs/tween.js",
+      "version": "23.1.3",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -161333,
+       "from": 161333,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "@types/draco3d",
+      "version": "1.4.10",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -12106,
+       "from": 12106,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "@types/offscreencanvas",
+      "version": "2019.7.3",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -8887,
+       "from": 8887,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "@types/react-reconciler",
+      "version": "0.28.9",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -47859,
+       "from": 47859,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "@types/stats.js",
+      "version": "0.17.4",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -4529,
+       "from": 4529,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "@types/three",
+      "version": "0.183.1",
+      "gonePackage": true,
+      "scope": "direct",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -1799986,
+       "from": 1799986,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "@types/webxr",
+      "version": "0.5.24",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -45995,
+       "from": 45995,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "@use-gesture/core",
+      "version": "10.3.1",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -329192,
+       "from": 329192,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "@use-gesture/react",
+      "version": "10.3.1",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -37189,
+       "from": 37189,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "@webgpu/types",
+      "version": "0.1.69",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -125015,
+       "from": 125015,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "base64-js",
+      "version": "1.5.1",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -9624,
+       "from": 9624,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "buffer",
+      "version": "6.0.3",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -91279,
+       "from": 91279,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "camera-controls",
+      "version": "3.1.2",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -376206,
+       "from": 376206,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "cross-env",
+      "version": "7.0.3",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -29080,
+       "from": 29080,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "detect-gpu",
+      "version": "5.0.70",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -979135,
+       "from": 979135,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "draco3d",
+      "version": "1.5.7",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -873175,
+       "from": 873175,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "fflate",
+      "version": "0.6.10",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -519723,
+       "from": 519723,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "fflate",
+      "version": "0.8.2",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -773398,
+       "from": 773398,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "framer-motion",
+      "version": "12.38.0",
+      "gonePackage": true,
+      "scope": "direct",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -4730874,
+       "from": 4730874,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "glsl-noise",
+      "version": "0.0.0",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": null,
+       "from": null,
+       "to": null,
+       "why": "the registry manifest has no dist.unpackedSize"
+      }
+     },
+     {
+      "type": "removed",
+      "name": "hls.js",
+      "version": "1.6.15",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -24746400,
+       "from": 24746400,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "ieee754",
+      "version": "1.2.1",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -6796,
+       "from": 6796,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "immediate",
+      "version": "3.0.6",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": null,
+       "from": null,
+       "to": null,
+       "why": "the registry manifest has no dist.unpackedSize"
+      }
+     },
+     {
+      "type": "removed",
+      "name": "is-promise",
+      "version": "2.2.2",
+      "gonePackage": false,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -2745,
+       "from": 2745,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "its-fine",
+      "version": "2.0.0",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -43537,
+       "from": 43537,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "lie",
+      "version": "3.3.0",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -59145,
+       "from": 59145,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "lucide-react",
+      "version": "1.7.0",
+      "gonePackage": true,
+      "scope": "direct",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -29829113,
+       "from": 29829113,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "maath",
+      "version": "0.10.8",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -304666,
+       "from": 304666,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "meshline",
+      "version": "3.3.1",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -51498,
+       "from": 51498,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "meshoptimizer",
+      "version": "1.0.1",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -267074,
+       "from": 267074,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "motion-dom",
+      "version": "12.38.0",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -3118402,
+       "from": 3118402,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "motion-utils",
+      "version": "12.36.0",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -96010,
+       "from": 96010,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "postcss",
+      "version": "8.5.8",
+      "gonePackage": false,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -203527,
+       "from": 203527,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "potpack",
+      "version": "1.0.2",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -11008,
+       "from": 11008,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "promise-worker-transferable",
+      "version": "1.0.4",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": null,
+       "from": null,
+       "to": null,
+       "why": "the registry manifest has no dist.unpackedSize"
+      }
+     },
+     {
+      "type": "removed",
+      "name": "react-use-measure",
+      "version": "2.1.7",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -29307,
+       "from": 29307,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "stats-gl",
+      "version": "2.4.2",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -73903,
+       "from": 73903,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "stats.js",
+      "version": "0.17.0",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": null,
+       "from": null,
+       "to": null,
+       "why": "the registry manifest has no dist.unpackedSize"
+      }
+     },
+     {
+      "type": "removed",
+      "name": "suspend-react",
+      "version": "0.1.3",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -13333,
+       "from": 13333,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "three",
+      "version": "0.170.0",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -27476113,
+       "from": 27476113,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "three",
+      "version": "0.183.2",
+      "gonePackage": true,
+      "scope": "direct",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -36491016,
+       "from": 36491016,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "three-mesh-bvh",
+      "version": "0.8.3",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -1615177,
+       "from": 1615177,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "three-stdlib",
+      "version": "2.36.1",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -26405702,
+       "from": 26405702,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "troika-three-text",
+      "version": "0.52.4",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -742883,
+       "from": 742883,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "troika-three-utils",
+      "version": "0.52.4",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -117561,
+       "from": 117561,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "troika-worker-utils",
+      "version": "0.52.0",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -73411,
+       "from": 73411,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "tunnel-rat",
+      "version": "0.1.2",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -26359,
+       "from": 26359,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "utility-types",
+      "version": "3.11.0",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -64326,
+       "from": 64326,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "webgl-constants",
+      "version": "1.1.1",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -487495,
+       "from": 487495,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "webgl-sdf-generator",
+      "version": "1.1.1",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -128555,
+       "from": 128555,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "zustand",
+      "version": "4.5.7",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -327043,
+       "from": 327043,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "removed",
+      "name": "zustand",
+      "version": "5.0.12",
+      "gonePackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -95032,
+       "from": 95032,
+       "to": null,
+       "why": null
+      }
+     }
+    ],
+    "counts": {
+     "total": 154,
+     "newPackages": 32,
+     "addedVersions": 1,
+     "removedPackages": 55,
+     "removedVersions": 2,
+     "bumped": 64,
+     "major": 0,
+     "minor": 32,
+     "patch": 32,
+     "prerelease": 0,
+     "unclassifiable": 0,
+     "downgrades": 0,
+     "scopeChanged": 0,
+     "resolutionChanged": 0,
+     "direct": 11,
+     "transitive": 143,
+     "newInstallScripts": 1,
+     "platformSpecific": 49,
+     "maintainerChanged": 20,
+     "maintainerUnknown": 0
+    },
+    "warnings": [],
+    "size": {
+     "bytesAdded": 1746828886,
+     "bytesRemoved": 1691402223,
+     "net": 55426663,
+     "unknownVersions": 4,
+     "lowerBound": true,
+     "platformBytes": 245885585,
+     "platformPackages": 49,
+     "netOnOnePlatform": -190458922,
+     "basis": "sum of dist.unpackedSize from the npm registry, which is unpacked tarball size and not node_modules on disk"
+    },
+    "registry": {
+     "cacheHits": 218,
+     "fetched": 0,
+     "unknown": 0,
+     "offline": false
+    }
+   }
+  },
+  {
+   "key": "lla",
+   "label": "language-learning-app",
+   "blurb": "A real pnpm workspace: one testing library added, and nothing else moved.",
+   "source": "2068c04..8ae6855 · pnpm-lock.yaml",
+   "raw": {
+    "added": 13,
+    "removed": 0
+   },
+   "report": {
+    "base": {
+     "format": "pnpm-lock.yaml",
+     "lockfileVersion": "9.0",
+     "file": "2068c04:pnpm-lock.yaml",
+     "packages": 880,
+     "direct": 33,
+     "transitive": 847,
+     "importers": 1
+    },
+    "head": {
+     "format": "pnpm-lock.yaml",
+     "lockfileVersion": "9.0",
+     "file": "8ae6855:pnpm-lock.yaml",
+     "packages": 881,
+     "direct": 34,
+     "transitive": 847,
+     "importers": 1
+    },
+    "changes": [
+     {
+      "type": "added",
+      "name": "@testing-library/user-event",
+      "version": "14.6.1",
+      "newPackage": true,
+      "scope": "direct",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "brrianalexis",
+        "cmckinstry",
+        "dfcook",
+        "eps1lon",
+        "gpx",
+        "jdecroock",
+        "kentcdodds",
+        "mdjastrzebski",
+        "mihar-22",
+        "mpeyper",
+        "pago",
+        "patrickhulce",
+        "phryneas",
+        "testing-library-bot",
+        "thymikee",
+        "timdeschryver"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "testing-library-bot"
+      },
+      "size": {
+       "delta": 437874,
+       "from": null,
+       "to": 437874,
+       "why": null
+      },
+      "deprecated": null
+     }
+    ],
+    "counts": {
+     "total": 1,
+     "newPackages": 1,
+     "addedVersions": 0,
+     "removedPackages": 0,
+     "removedVersions": 0,
+     "bumped": 0,
+     "major": 0,
+     "minor": 0,
+     "patch": 0,
+     "prerelease": 0,
+     "unclassifiable": 0,
+     "downgrades": 0,
+     "scopeChanged": 0,
+     "resolutionChanged": 0,
+     "direct": 1,
+     "transitive": 0,
+     "newInstallScripts": 0,
+     "platformSpecific": 0,
+     "maintainerChanged": 0,
+     "maintainerUnknown": 0
+    },
+    "warnings": [],
+    "size": {
+     "bytesAdded": 437874,
+     "bytesRemoved": 0,
+     "net": 437874,
+     "unknownVersions": 0,
+     "lowerBound": false,
+     "platformBytes": 0,
+     "platformPackages": 0,
+     "netOnOnePlatform": 437874,
+     "basis": "sum of dist.unpackedSize from the npm registry, which is unpacked tarball size and not node_modules on disk"
+    },
+    "registry": {
+     "cacheHits": 219,
+     "fetched": 0,
+     "unknown": 0,
+     "offline": false
+    }
+   }
+  },
+  {
+   "key": "fixture",
+   "label": "known-answer fixture",
+   "blurb": "The hand-built pair from the test suite, which exercises every classification at once.",
+   "source": "test/fixtures/npm-v3",
+   "raw": {
+    "added": 111,
+    "removed": 116
+   },
+   "report": {
+    "base": {
+     "format": "package-lock.json",
+     "lockfileVersion": "3",
+     "file": "base.json",
+     "packages": 15,
+     "direct": 10,
+     "transitive": 5,
+     "importers": 2
+    },
+    "head": {
+     "format": "package-lock.json",
+     "lockfileVersion": "3",
+     "file": "head.json",
+     "packages": 15,
+     "direct": 10,
+     "transitive": 5,
+     "importers": 2
+    },
+    "changes": [
+     {
+      "type": "bumped",
+      "name": "gitdep",
+      "from": "git:git+ssh://git@github.com/example/gitdep.git#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "to": "git:git+ssh://git@github.com/example/gitdep.git#bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "kind": "unclassifiable",
+      "direction": null,
+      "reason": "base is a git dependency, head is a git dependency",
+      "zeroMajor": false,
+      "scope": "direct",
+      "scopeBefore": "direct",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "unknown",
+       "reason": "base: not a registry version (local, linked or git dependency)",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": null,
+       "from": null,
+       "to": null,
+       "why": "not a registry version (local, linked or git dependency)"
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "local-ui",
+      "from": "link:packages/ui",
+      "to": "link:packages/ui-next",
+      "kind": "unclassifiable",
+      "direction": null,
+      "reason": "base is a link: dependency, head is a link: dependency",
+      "zeroMajor": false,
+      "scope": "direct",
+      "scopeBefore": "direct",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "unknown",
+       "reason": "base: not a registry version (local, linked or git dependency)",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": null,
+       "from": null,
+       "to": null,
+       "why": "not a registry version (local, linked or git dependency)"
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "nover",
+      "from": "1.0.0",
+      "to": "<no version>",
+      "kind": "unclassifiable",
+      "direction": null,
+      "reason": "head is missing",
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "unknown",
+       "reason": "base: the public registry has no manifest for this version",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": null,
+       "from": null,
+       "to": null,
+       "why": "the public registry has no manifest for this version"
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "vendored",
+      "from": "file:vendor/vendored-1.0.0.tgz",
+      "to": "file:vendor/vendored-1.0.1.tgz",
+      "kind": "unclassifiable",
+      "direction": null,
+      "reason": "base is a file: dependency, head is a file: dependency",
+      "zeroMajor": false,
+      "scope": "direct",
+      "scopeBefore": "direct",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "unknown",
+       "reason": "base: not a registry version (local, linked or git dependency)",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": null,
+       "from": null,
+       "to": null,
+       "why": "not a registry version (local, linked or git dependency)"
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "abbrev",
+      "from": "1.1.1",
+      "to": "2.0.0",
+      "kind": "major",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [
+        "darcyclarke",
+        "fritzy",
+        "gar",
+        "lukekarrys",
+        "nlf"
+       ],
+       "removed": [
+        "gabra",
+        "isaacs"
+       ],
+       "publisherBefore": "isaacs",
+       "publisherAfter": "lukekarrys"
+      },
+      "size": {
+       "delta": null,
+       "from": null,
+       "to": 4827,
+       "why": "the registry manifest has no dist.unpackedSize"
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "rimraf",
+      "from": "2.7.1",
+      "to": "5.0.5",
+      "kind": "major",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "direct",
+      "scopeBefore": "direct",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": true,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "isaacs",
+       "publisherAfter": "isaacs"
+      },
+      "size": {
+       "delta": 261902,
+       "from": 15463,
+       "to": 277365,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "uuid",
+      "from": "3.4.0",
+      "to": "9.0.1",
+      "kind": "major",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "direct",
+      "scopeBefore": "direct",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [],
+       "removed": [
+        "defunctzombie",
+        "vvo"
+       ],
+       "publisherBefore": "ctavan",
+       "publisherAfter": "ctavan"
+      },
+      "size": {
+       "delta": 89019,
+       "from": 34269,
+       "to": 123288,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "semver",
+      "from": "7.5.4",
+      "to": "7.6.0",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "direct",
+      "scopeBefore": "direct",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [],
+       "removed": [
+        "nlf"
+       ],
+       "publisherBefore": "npm-cli-ops",
+       "publisherAfter": "npm-cli-ops"
+      },
+      "size": {
+       "delta": 843,
+       "from": 93401,
+       "to": 94244,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "three",
+      "from": "0.183.2",
+      "to": "0.184.0",
+      "kind": "minor",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": true,
+      "scope": "direct",
+      "scopeBefore": "direct",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "publisher-changed",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "mugen87",
+       "publisherAfter": "mrdoob"
+      },
+      "size": {
+       "delta": 472769,
+       "from": 36491016,
+       "to": 36963785,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "ms",
+      "from": "2.1.2",
+      "to": "2.1.3",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [
+        "chibicode",
+        "cleishm",
+        "developit",
+        "elsigh",
+        "gielcobben",
+        "gmonaco",
+        "hankvercel",
+        "housseindjirdeh",
+        "jaredpalmer",
+        "jkrems",
+        "keanulee",
+        "kikobeats",
+        "leerobinson",
+        "nazarenooviedo",
+        "okbel",
+        "prateekbh",
+        "samsisle",
+        "spanicker"
+       ],
+       "removed": [
+        "alexaltea",
+        "arunoda",
+        "b3nnyl",
+        "caarlos0",
+        "fivepointseven",
+        "hharnisc",
+        "huvik",
+        "manovotny",
+        "marcosnils",
+        "olliv",
+        "sarupbanskota",
+        "sophearak"
+       ],
+       "publisherBefore": "styfle",
+       "publisherAfter": "styfle"
+      },
+      "size": {
+       "delta": -121,
+       "from": 6842,
+       "to": 6721,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "semver",
+      "from": "6.3.0",
+      "to": "6.3.1",
+      "kind": "patch",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "transitive",
+      "scopeBefore": "transitive",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "changed",
+       "reason": null,
+       "added": [
+        "fritzy",
+        "gar",
+        "lukekarrys",
+        "nlf",
+        "npm-cli-ops",
+        "saquibkhan"
+       ],
+       "removed": [
+        "isaacs",
+        "othiym23"
+       ],
+       "publisherBefore": "isaacs",
+       "publisherAfter": "lukekarrys"
+      },
+      "size": {
+       "delta": 1272,
+       "from": 67071,
+       "to": 68343,
+       "why": null
+      }
+     },
+     {
+      "type": "bumped",
+      "name": "@polka/url",
+      "from": "1.0.0-next.25",
+      "to": "1.0.0-next.29",
+      "kind": "prerelease",
+      "direction": "up",
+      "reason": null,
+      "zeroMajor": false,
+      "scope": "direct",
+      "scopeBefore": "direct",
+      "dev": true,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "same",
+       "reason": null,
+       "added": [],
+       "removed": [],
+       "publisherBefore": "lukeed",
+       "publisherAfter": "lukeed"
+      },
+      "size": {
+       "delta": 335,
+       "from": 4480,
+       "to": 4815,
+       "why": null
+      }
+     },
+     {
+      "type": "added",
+      "name": "picocolors",
+      "version": "1.0.1",
+      "newPackage": true,
+      "scope": "transitive",
+      "dev": false,
+      "optional": false,
+      "hasInstallScript": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "new",
+       "reason": null,
+       "added": [
+        "alexeyraspopov"
+       ],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": "alexeyraspopov"
+      },
+      "size": {
+       "delta": 5152,
+       "from": null,
+       "to": 5152,
+       "why": null
+      },
+      "deprecated": null
+     },
+     {
+      "type": "removed",
+      "name": "glob",
+      "version": "7.2.3",
+      "gonePackage": true,
+      "scope": "direct",
+      "dev": false,
+      "optional": false,
+      "platformSpecific": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "package removed",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": -55064,
+       "from": 55064,
+       "to": null,
+       "why": null
+      }
+     },
+     {
+      "type": "scope-changed",
+      "name": "picomatch",
+      "version": "2.3.1",
+      "scopeBefore": "transitive",
+      "scope": "direct",
+      "dev": false,
+      "optional": false,
+      "maintainer": {
+       "status": "n/a",
+       "reason": "version unchanged",
+       "added": [],
+       "removed": [],
+       "publisherBefore": null,
+       "publisherAfter": null
+      },
+      "size": {
+       "delta": 0,
+       "from": null,
+       "to": null,
+       "why": null
+      }
+     }
+    ],
+    "counts": {
+     "total": 15,
+     "newPackages": 1,
+     "addedVersions": 0,
+     "removedPackages": 1,
+     "removedVersions": 0,
+     "bumped": 12,
+     "major": 3,
+     "minor": 2,
+     "patch": 2,
+     "prerelease": 1,
+     "unclassifiable": 4,
+     "downgrades": 0,
+     "scopeChanged": 1,
+     "resolutionChanged": 0,
+     "direct": 10,
+     "transitive": 5,
+     "newInstallScripts": 1,
+     "platformSpecific": 0,
+     "maintainerChanged": 6,
+     "maintainerUnknown": 4
+    },
+    "warnings": [],
+    "size": {
+     "bytesAdded": 37543713,
+     "bytesRemoved": 36767606,
+     "net": 776107,
+     "unknownVersions": 5,
+     "lowerBound": true,
+     "platformBytes": 0,
+     "platformPackages": 0,
+     "netOnOnePlatform": 776107,
+     "basis": "sum of dist.unpackedSize from the npm registry, which is unpacked tarball size and not node_modules on disk"
+    },
+    "registry": {
+     "cacheHits": 237,
+     "fetched": 0,
+     "unknown": 1,
+     "offline": false
+    }
+   }
+  }
+ ]
+}

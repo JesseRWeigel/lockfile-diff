@@ -96,6 +96,12 @@ export async function enrich(report, registry) {
   let bytesAdded = 0;
   let bytesRemoved = 0;
   let unknownSizes = 0;
+  // Platform-specific prebuilt binaries are counted separately. A lockfile lists one per
+  // platform and installs at most one, so folding all sixteen into one total produces a number
+  // no machine will ever see. Real example from this repo's docs page: a +55 MB delta of which
+  // +53 MB is sixteen builds of the same bundler binary.
+  let platformBytes = 0;
+  let platformPackages = 0;
 
   for (const change of report.changes) {
     if (change.type === 'bumped') {
@@ -111,6 +117,7 @@ export async function enrich(report, registry) {
         bytesAdded += sAfter.bytes;
         bytesRemoved += sBefore.bytes;
         change.size = { delta: sAfter.bytes - sBefore.bytes, from: sBefore.bytes, to: sAfter.bytes, why: null };
+        if (change.platformSpecific) { platformBytes += change.size.delta; platformPackages += 1; }
       }
     } else if (change.type === 'added') {
       const after = get(change.name, change.version);
@@ -119,14 +126,22 @@ export async function enrich(report, registry) {
         : { status: 'unknown', reason: after.reason, added: [], removed: [], publisherBefore: null, publisherAfter: null };
       const s = sizeOf(after);
       if (s.bytes === null) { unknownSizes += 1; change.size = { delta: null, from: null, to: null, why: s.why }; }
-      else { bytesAdded += s.bytes; change.size = { delta: s.bytes, from: null, to: s.bytes, why: null }; }
+      else {
+        bytesAdded += s.bytes;
+        change.size = { delta: s.bytes, from: null, to: s.bytes, why: null };
+        if (change.platformSpecific) { platformBytes += s.bytes; platformPackages += 1; }
+      }
       change.deprecated = after.status === 'ok' ? after.manifest.deprecated : null;
     } else if (change.type === 'removed') {
       const before = get(change.name, change.version);
       change.maintainer = { status: 'n/a', reason: 'package removed', added: [], removed: [], publisherBefore: null, publisherAfter: null };
       const s = sizeOf(before);
       if (s.bytes === null) { unknownSizes += 1; change.size = { delta: null, from: null, to: null, why: s.why }; }
-      else { bytesRemoved += s.bytes; change.size = { delta: -s.bytes, from: s.bytes, to: null, why: null }; }
+      else {
+        bytesRemoved += s.bytes;
+        change.size = { delta: -s.bytes, from: s.bytes, to: null, why: null };
+        if (change.platformSpecific) { platformBytes -= s.bytes; platformPackages += 1; }
+      }
     } else {
       change.maintainer = { status: 'n/a', reason: 'version unchanged', added: [], removed: [], publisherBefore: null, publisherAfter: null };
       change.size = { delta: 0, from: null, to: null, why: null };
@@ -139,6 +154,9 @@ export async function enrich(report, registry) {
     net: bytesAdded - bytesRemoved,
     unknownVersions: unknownSizes,
     lowerBound: unknownSizes > 0,
+    platformBytes,
+    platformPackages,
+    netOnOnePlatform: bytesAdded - bytesRemoved - platformBytes,
     basis: 'sum of dist.unpackedSize from the npm registry, which is unpacked tarball size and '
       + 'not node_modules on disk',
   };
@@ -165,6 +183,7 @@ export function enrichOffline(report) {
   }
   report.size = {
     bytesAdded: 0, bytesRemoved: 0, net: 0,
+    platformBytes: 0, platformPackages: 0, netOnOnePlatform: 0,
     unknownVersions: report.changes.length,
     lowerBound: true,
     basis: 'registry lookups disabled, so no size information was gathered',

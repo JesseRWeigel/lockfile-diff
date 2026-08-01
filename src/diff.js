@@ -105,7 +105,7 @@ export function diffLockfiles(base, head) {
         changes.push({
           type: 'added', name, version: v, newPackage: true,
           scope: scopeOf(unit), dev: unit.dev, optional: unit.optional,
-          hasInstallScript: unit.hasInstallScript,
+          hasInstallScript: unit.hasInstallScript, platformSpecific: unit.platformSpecific,
         });
       }
       continue;
@@ -116,6 +116,7 @@ export function diffLockfiles(base, head) {
         changes.push({
           type: 'removed', name, version: v, gonePackage: true,
           scope: scopeOf(unit), dev: unit.dev, optional: unit.optional,
+          platformSpecific: unit.platformSpecific,
         });
       }
       continue;
@@ -140,6 +141,7 @@ export function diffLockfiles(base, head) {
         dev: toUnit.dev,
         optional: toUnit.optional,
         hasInstallScript: toUnit.hasInstallScript,
+        platformSpecific: toUnit.platformSpecific || fromUnit.platformSpecific,
       });
     }
     for (const v of paired.added) {
@@ -147,7 +149,7 @@ export function diffLockfiles(base, head) {
       changes.push({
         type: 'added', name, version: v, newPackage: false,
         scope: scopeOf(unit), dev: unit.dev, optional: unit.optional,
-        hasInstallScript: unit.hasInstallScript,
+        hasInstallScript: unit.hasInstallScript, platformSpecific: unit.platformSpecific,
       });
     }
     for (const v of paired.removed) {
@@ -155,6 +157,7 @@ export function diffLockfiles(base, head) {
       changes.push({
         type: 'removed', name, version: v, gonePackage: false,
         scope: scopeOf(unit), dev: unit.dev, optional: unit.optional,
+        platformSpecific: unit.platformSpecific,
       });
     }
 
@@ -202,6 +205,7 @@ export function diffLockfiles(base, head) {
     direct: changes.filter((c) => c.scope === 'direct').length,
     transitive: changes.filter((c) => c.scope === 'transitive').length,
     newInstallScripts: changes.filter((c) => c.hasInstallScript && (c.type === 'added' || c.type === 'bumped')).length,
+    platformSpecific: changes.filter((c) => c.platformSpecific).length,
   };
 
   return {
