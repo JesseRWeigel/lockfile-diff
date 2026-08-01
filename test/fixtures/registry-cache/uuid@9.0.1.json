@@ -1,0 +1,13 @@
+{
+  "status": "ok",
+  "manifest": {
+    "maintainers": [
+      "broofa",
+      "ctavan"
+    ],
+    "publisher": "ctavan",
+    "unpackedSize": 123288,
+    "fileCount": 76,
+    "deprecated": "uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028)."
+  }
+}

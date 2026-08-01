@@ -1,0 +1,54 @@
+{
+  "name": "v2-app",
+  "version": "1.0.0",
+  "lockfileVersion": 2,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "v2-app",
+      "version": "1.0.0",
+      "dependencies": {
+        "ms": "^2.1.3",
+        "rimraf": "^5.0.5"
+      }
+    },
+    "node_modules/ms": {
+      "version": "2.1.3",
+      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",
+      "integrity": "sha512-000000000000000000000000000000000000000000000000000000000000000000000000000000000BG=="
+    },
+    "node_modules/rimraf": {
+      "version": "5.0.5",
+      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-5.0.5.tgz",
+      "integrity": "sha512-000000000000000000000000000000000000000000000000000000000000000000000000000000000BI==",
+      "dependencies": {
+        "picocolors": "^1.0.1"
+      }
+    },
+    "node_modules/picocolors": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/picocolors/-/picocolors-1.0.1.tgz",
+      "integrity": "sha512-000000000000000000000000000000000000000000000000000000000000000000000000000000000BC=="
+    }
+  },
+  "dependencies": {
+    "ms": {
+      "version": "2.1.3",
+      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz",
+      "integrity": "sha512-000000000000000000000000000000000000000000000000000000000000000000000000000000000BG=="
+    },
+    "picocolors": {
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/picocolors/-/picocolors-1.0.1.tgz",
+      "integrity": "sha512-000000000000000000000000000000000000000000000000000000000000000000000000000000000BC=="
+    },
+    "rimraf": {
+      "version": "5.0.5",
+      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-5.0.5.tgz",
+      "integrity": "sha512-000000000000000000000000000000000000000000000000000000000000000000000000000000000BI==",
+      "requires": {
+        "picocolors": "^1.0.1"
+      }
+    }
+  }
+}

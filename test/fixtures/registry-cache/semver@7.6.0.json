@@ -1,0 +1,16 @@
+{
+  "status": "ok",
+  "manifest": {
+    "maintainers": [
+      "fritzy",
+      "gar",
+      "lukekarrys",
+      "npm-cli-ops",
+      "saquibkhan"
+    ],
+    "publisher": "npm-cli-ops",
+    "unpackedSize": 94244,
+    "fileCount": 51,
+    "deprecated": null
+  }
+}

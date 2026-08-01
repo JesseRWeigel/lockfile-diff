@@ -1,0 +1,54 @@
+{
+  "name": "v2-app",
+  "version": "1.0.0",
+  "lockfileVersion": 2,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "v2-app",
+      "version": "1.0.0",
+      "dependencies": {
+        "ms": "^2.1.2",
+        "rimraf": "^2.7.1"
+      }
+    },
+    "node_modules/glob": {
+      "version": "7.2.3",
+      "resolved": "https://registry.npmjs.org/glob/-/glob-7.2.3.tgz",
+      "integrity": "sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AF=="
+    },
+    "node_modules/ms": {
+      "version": "2.1.2",
+      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",
+      "integrity": "sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AG=="
+    },
+    "node_modules/rimraf": {
+      "version": "2.7.1",
+      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-2.7.1.tgz",
+      "integrity": "sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AI==",
+      "dependencies": {
+        "glob": "^7.1.3"
+      }
+    }
+  },
+  "dependencies": {
+    "glob": {
+      "version": "7.2.3",
+      "resolved": "https://registry.npmjs.org/glob/-/glob-7.2.3.tgz",
+      "integrity": "sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AF=="
+    },
+    "ms": {
+      "version": "2.1.2",
+      "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",
+      "integrity": "sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AG=="
+    },
+    "rimraf": {
+      "version": "2.7.1",
+      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-2.7.1.tgz",
+      "integrity": "sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AI==",
+      "requires": {
+        "glob": "^7.1.3"
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  rimraf:
+    specifier: ^2.7.1
+    version: 2.7.1
+  semver:
+    specifier: ^7.5.4
+    version: 7.5.4
+
+devDependencies:
+  eslint:
+    specifier: ^8.57.0
+    version: 8.57.0
+
+packages:
+
+  /abbrev@1.1.1:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AB==}
+    dev: false
+
+  /eslint@8.57.0:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AC==}
+    engines: {node: ^12.22.0 || ^14.17.0 || '>=16.0.0'}
+    hasBin: true
+    dependencies:
+      semver: 6.3.0
+    dev: true
+
+  /glob@7.2.3:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AF==}
+    dev: false
+
+  /ms@2.1.2:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AG==}
+    dev: false
+
+  /rimraf@2.7.1:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AI==}
+    hasBin: true
+    dependencies:
+      abbrev: 1.1.1
+      glob: 7.2.3
+      ms: 2.1.2
+    dev: false
+
+  /semver@6.3.0:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AE==}
+    hasBin: true
+    dev: true
+
+  /semver@7.5.4:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AJ==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dev: false

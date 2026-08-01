@@ -1,0 +1,109 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      glob:
+        specifier: ^7.2.3
+        version: 7.2.3
+      local-ui:
+        specifier: workspace:*
+        version: link:packages/ui
+      rimraf:
+        specifier: ^2.7.1
+        version: 2.7.1
+      semver:
+        specifier: ^7.5.4
+        version: 7.5.4
+      three:
+        specifier: ^0.183.2
+        version: 0.183.2
+      uuid:
+        specifier: ^3.4.0
+        version: 3.4.0
+    devDependencies:
+      '@polka/url':
+        specifier: 1.0.0-next.25
+        version: 1.0.0-next.25
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+
+packages:
+
+  '@polka/url@1.0.0-next.25':
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AA==}
+
+  abbrev@1.1.1:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AB==}
+
+  eslint@8.57.0:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AC==}
+    engines: {node: ^12.22.0 || ^14.17.0 || '>=16.0.0'}
+    hasBin: true
+
+  glob@7.2.3:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AF==}
+
+  ms@2.1.2:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AG==}
+
+  picomatch@2.3.1:
+    engines: {node: '>=8.6'}
+
+  rimraf@2.7.1:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AI==}
+    hasBin: true
+
+  semver@6.3.0:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AE==}
+    hasBin: true
+
+  semver@7.5.4:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AJ==}
+    engines: {node: '>=10'}
+    hasBin: true
+
+  three@0.183.2:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AK==}
+
+  uuid@3.4.0:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AL==}
+    deprecated: Please upgrade to version 7 or higher.
+    hasBin: true
+
+snapshots:
+
+  '@polka/url@1.0.0-next.25': {}
+
+  abbrev@1.1.1: {}
+
+  eslint@8.57.0:
+    dependencies:
+      picomatch: 2.3.1
+      semver: 6.3.0
+
+  glob@7.2.3: {}
+
+  ms@2.1.2: {}
+
+  picomatch@2.3.1: {}
+
+  rimraf@2.7.1:
+    dependencies:
+      abbrev: 1.1.1
+      glob: 7.2.3
+      ms: 2.1.2
+
+  semver@6.3.0: {}
+
+  semver@7.5.4: {}
+
+  three@0.183.2: {}
+
+  uuid@3.4.0: {}

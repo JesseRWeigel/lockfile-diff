@@ -1,0 +1,16 @@
+{
+  "status": "ok",
+  "manifest": {
+    "maintainers": [
+      "darcyclarke",
+      "fritzy",
+      "gar",
+      "lukekarrys",
+      "nlf"
+    ],
+    "publisher": "lukekarrys",
+    "unpackedSize": 4827,
+    "fileCount": 4,
+    "deprecated": null
+  }
+}

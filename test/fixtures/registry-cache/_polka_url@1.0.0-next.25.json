@@ -1,0 +1,12 @@
+{
+  "status": "ok",
+  "manifest": {
+    "maintainers": [
+      "lukeed"
+    ],
+    "publisher": "lukeed",
+    "unpackedSize": 4480,
+    "fileCount": 5,
+    "deprecated": null
+  }
+}

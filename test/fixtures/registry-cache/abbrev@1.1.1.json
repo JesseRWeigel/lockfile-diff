@@ -1,0 +1,13 @@
+{
+  "status": "ok",
+  "manifest": {
+    "maintainers": [
+      "gabra",
+      "isaacs"
+    ],
+    "publisher": "isaacs",
+    "unpackedSize": null,
+    "fileCount": null,
+    "deprecated": null
+  }
+}

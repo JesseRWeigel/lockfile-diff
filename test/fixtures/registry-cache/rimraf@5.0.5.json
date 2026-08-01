@@ -1,0 +1,12 @@
+{
+  "status": "ok",
+  "manifest": {
+    "maintainers": [
+      "isaacs"
+    ],
+    "publisher": "isaacs",
+    "unpackedSize": 277365,
+    "fileCount": 137,
+    "deprecated": null
+  }
+}

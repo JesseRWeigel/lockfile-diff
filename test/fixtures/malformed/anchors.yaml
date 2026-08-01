@@ -1,0 +1,9 @@
+lockfileVersion: '9.0'
+
+defaults: &d
+  a: b
+
+packages:
+
+  ms@2.1.2:
+    resolution: {integrity: x}

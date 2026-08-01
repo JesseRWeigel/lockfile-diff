@@ -1,0 +1,56 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      glob:
+        specifier: ^7.2.3
+        version: 7.2.3
+      local-ui:
+        specifier: workspace:*
+        version: link:packages/ui
+      rimraf:
+        specifier: ^2.7.1
+        version: 2.7.1
+      semver:
+        specifier: ^7.5.4
+        version: 7.5.4
+      three:
+        specifier: ^0.183.2
+        version: 0.183.2
+      uuid:
+        specifier: ^3.4.0
+        version: 3.4.0
+    devDependencies:
+      '@polka/url':
+        specifier: 1.0.0-next.25
+        version: 1.0.0-next.25
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+
+packages:
+
+  '@polka/url@1.0.0-next.25':
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AA==}
+
+  abbrev@1.1.1:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AB==}
+
+  eslint@8.57.0:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AC==}
+    engines: {node: ^12.22.0 || ^14.17.0 || '>=16.0.0'}
+    hasBin: true
+
+  glob@7.2.3:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AF==}
+
+  ms@2.1.2:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AG==}
+
+  picomatch@2.3.1:

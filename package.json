@@ -1,0 +1,26 @@
+{
+  "name": "lockfile-diff",
+  "version": "0.1.0",
+  "description": "Diff package-lock.json or pnpm-lock.yaml and answer the five questions reviewers actually ask",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "lockfile-diff": "bin/lockfile-diff.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "action.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "verify": "bash scripts/verify.sh"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

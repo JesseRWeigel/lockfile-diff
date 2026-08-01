@@ -1,0 +1,13 @@
+{
+  "status": "ok",
+  "manifest": {
+    "maintainers": [
+      "mrdoob",
+      "mugen87"
+    ],
+    "publisher": "mugen87",
+    "unpackedSize": 36491016,
+    "fileCount": 1156,
+    "deprecated": null
+  }
+}

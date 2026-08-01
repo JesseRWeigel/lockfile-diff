@@ -1,0 +1,62 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  rimraf:
+    specifier: ^5.0.5
+    version: 5.0.5
+  semver:
+    specifier: ^7.6.0
+    version: 7.6.0
+
+devDependencies:
+  eslint:
+    specifier: ^8.57.0
+    version: 8.57.0
+
+packages:
+
+  /abbrev@2.0.0:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000BB==}
+    engines: {node: ^18.17.0 || '>=20.5.0'}
+    dev: false
+
+  /eslint@8.57.0:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000AC==}
+    engines: {node: ^12.22.0 || ^14.17.0 || '>=16.0.0'}
+    hasBin: true
+    dependencies:
+      semver: 6.3.1
+    dev: true
+
+  /ms@2.1.3:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000BG==}
+    dev: false
+
+  /picocolors@1.0.1:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000BC==}
+    dev: false
+
+  /rimraf@5.0.5:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000BI==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      abbrev: 2.0.0
+      ms: 2.1.3
+      picocolors: 1.0.1
+    dev: false
+
+  /semver@6.3.1:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000BE==}
+    hasBin: true
+    dev: true
+
+  /semver@7.6.0:
+    resolution: {integrity: sha512-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000BJ==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dev: false
