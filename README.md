@@ -1,5 +1,7 @@
 # lockfile-diff
 
+**[Open the live page](https://jesserweigel.github.io/lockfile-diff/)**
+
 A lockfile diff is thousands of unreadable lines, so reviewers approve it blind. This is a CLI
 and a GitHub Action that reads `package-lock.json` or `pnpm-lock.yaml` on both sides of a pull
 request and posts a comment answering the five questions a reviewer would ask if the answers
@@ -368,3 +370,5 @@ match what is committed.
 ## License
 
 MIT
+
+Part of [722 things to build](https://github.com/JesseRWeigel/722-things-to-build).
