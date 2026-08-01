@@ -18,6 +18,7 @@
  */
 import fs from 'node:fs';
 import http from 'node:http';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
@@ -35,7 +36,13 @@ const CANDIDATES = [
   path.join(ROOT, 'node_modules', 'playwright'),
   'playwright-core',
   'playwright',
+  // Last resort, and only useful on the workstation this was written on: a sibling project in
+  // the same fleet already has Chromium downloaded. Built from os.homedir() rather than written
+  // out, so no absolute /home/<user> path is committed. If this is the only candidate that
+  // resolves, the check still runs, but a fresh clone elsewhere will correctly fail with the
+  // actionable message below rather than silently skipping.
   path.join(ROOT, '..', 'a11y-sweep', 'node_modules', 'playwright-core'),
+  path.join(os.homedir(), 'Projects', 'thousand', 'projects', 'a11y-sweep', 'node_modules', 'playwright-core'),
 ];
 let playwright = null;
 for (const candidate of CANDIDATES) {
