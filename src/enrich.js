@@ -156,7 +156,7 @@ export async function enrich(report, registry) {
     lowerBound: unknownSizes > 0,
     platformBytes,
     platformPackages,
-    netOnOnePlatform: bytesAdded - bytesRemoved - platformBytes,
+    netExcludingPlatform: bytesAdded - bytesRemoved - platformBytes,
     basis: 'sum of dist.unpackedSize from the npm registry, which is unpacked tarball size and '
       + 'not node_modules on disk',
   };
@@ -183,7 +183,7 @@ export function enrichOffline(report) {
   }
   report.size = {
     bytesAdded: 0, bytesRemoved: 0, net: 0,
-    platformBytes: 0, platformPackages: 0, netOnOnePlatform: 0,
+    platformBytes: 0, platformPackages: 0, netExcludingPlatform: 0,
     unknownVersions: report.changes.length,
     lowerBound: true,
     basis: 'registry lookups disabled, so no size information was gathered',

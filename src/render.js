@@ -125,9 +125,10 @@ function sizeSentence(report) {
       + 'in the registry and contribute 0 to the total rather than being guessed at.'
     : '';
   const platform = size.platformPackages > 0
-    ? ` Of that, ${formatDelta(size.platformBytes)} is in ${size.platformPackages} platform-specific `
-      + 'optional package(s) (os/cpu constrained prebuilt binaries). npm downloads at most one of '
-      + `each set, so a single machine sees closer to **${formatDelta(size.netOnOnePlatform)}**.`
+    ? ` ${formatDelta(size.platformBytes)} of that is ${size.platformPackages} platform-specific `
+      + 'optional package(s): prebuilt binaries listed once per os/cpu, of which an install '
+      + 'downloads at most one from each set. The headline number therefore overstates what any '
+      + `single machine pulls. Excluding them the delta is **${formatDelta(size.netExcludingPlatform)}**.`
     : '';
   return `**${formatDelta(size.net)}** (added ${formatBytes(size.bytesAdded)}, `
     + `removed ${formatBytes(size.bytesRemoved)}). Measured as the ${size.basis}.${platform}${bound}`;
@@ -314,7 +315,7 @@ export function renderText(report) {
     `size delta: ${formatDelta(report.size?.net)}${report.size?.lowerBound ? ' (lower bound)' : ''}`
     + (report.size?.platformPackages
       ? `, of which ${formatDelta(report.size.platformBytes)} is platform-specific binaries `
-        + `(${formatDelta(report.size.netOnOnePlatform)} on any one machine)`
+        + `(${formatDelta(report.size.netExcludingPlatform)} excluding them)`
       : ''),
   );
   lines.push('');

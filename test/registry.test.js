@@ -199,14 +199,14 @@ test('platform-specific prebuilt binaries are counted separately from the real d
   assert.equal(report.size.platformPackages, 2);
   assert.equal(report.size.net, (2068183 - 2035351) + (1780893 - 1764349));
   assert.equal(report.size.platformBytes, report.size.net);
-  assert.equal(report.size.netOnOnePlatform, 0);
+  assert.equal(report.size.netExcludingPlatform, 0);
   for (const change of report.changes) assert.equal(change.platformSpecific, true);
 
   // picocolors is not platform-constrained, so it must not be swept into the same bucket.
   const plain = await enrichedDiff('npm-v3/base.json', 'npm-v3/head.json');
   assert.equal(plain.counts.platformSpecific, 0);
   assert.equal(plain.size.platformPackages, 0);
-  assert.equal(plain.size.netOnOnePlatform, plain.size.net);
+  assert.equal(plain.size.netExcludingPlatform, plain.size.net);
 });
 
 test('isPlatformSpecific needs both an os/cpu constraint and optionality', () => {

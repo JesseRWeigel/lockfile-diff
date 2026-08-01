@@ -4325,7 +4325,7 @@
      "lowerBound": true,
      "platformBytes": 245885585,
      "platformPackages": 49,
-     "netOnOnePlatform": -190458922,
+     "netExcludingPlatform": -190458922,
      "basis": "sum of dist.unpackedSize from the npm registry, which is unpacked tarball size and not node_modules on disk"
     },
     "registry": {
@@ -4440,7 +4440,7 @@
      "lowerBound": false,
      "platformBytes": 0,
      "platformPackages": 0,
-     "netOnOnePlatform": 437874,
+     "netExcludingPlatform": 437874,
      "basis": "sum of dist.unpackedSize from the npm registry, which is unpacked tarball size and not node_modules on disk"
     },
     "registry": {
@@ -5003,7 +5003,7 @@
      "lowerBound": true,
      "platformBytes": 0,
      "platformPackages": 0,
-     "netOnOnePlatform": 776107,
+     "netExcludingPlatform": 776107,
      "basis": "sum of dist.unpackedSize from the npm registry, which is unpacked tarball size and not node_modules on disk"
     },
     "registry": {
