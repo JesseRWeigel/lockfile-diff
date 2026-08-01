@@ -348,7 +348,7 @@ import('./src/registry.js').then(async ({ Registry }) => {
 " 2>&1)
 set -e
 printf '        %s\n' "$live" | head -3
-echo "        (the suite does not depend on this; a failed lookup is UNKNOWN, not a pass)"
+echo "        (the suite does not depend on this; a failed lookup is reported UNKNOWN)"
 
 echo
 echo "10. self-attack: the checks above must FAIL when the engine is broken"

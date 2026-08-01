@@ -80,7 +80,7 @@ roots.
 
 ### YAML
 
-`pnpm-lock.yaml` is parsed by a focused parser in `src/yaml.js`, not a YAML library. The project
+`pnpm-lock.yaml` is parsed by a focused parser in `src/yaml.js` rather than by a YAML library. The project
 has zero runtime dependencies on purpose: a lockfile diff Action that pulls in a dependency tree
 to read lockfiles is a slightly absurd object, and its audience is people who care about that.
 pnpm writes with js-yaml in a deliberately narrow style, so the accepted grammar is small and
@@ -174,7 +174,7 @@ Verified by `bash scripts/verify.sh`. Real output from the run below.
 9. live registry check (informational, never gates this script)
         live abbrev 1.1.1 maintainers [gabra,isaacs] -> 2.0.0 [darcyclarke,fritzy,gar,lukekarrys,nlf]
 handoff still visible live
-        (the suite does not depend on this; a failed lookup is UNKNOWN, not a pass)
+        (the suite does not depend on this; a failed lookup is reported UNKNOWN)
 
 10. self-attack: the checks above must FAIL when the engine is broken
         sabotage "empty-parse" output: 0 packages -> 0 packages no changes 
@@ -308,8 +308,8 @@ A package that changed hands between the two versions is the highest-signal supp
 
 ## Limitations
 
-- **The size number is unpacked tarball size, not disk usage.** See question 5 above. Treat it
-  as a comparative signal, not a measurement of your `node_modules`.
+- **The size number is unpacked tarball size.** See question 5 above. Treat it as a comparative
+  signal. It does not measure what lands in your `node_modules`.
 - **Registry lookups are per version, over the public registry.** A private or scoped-to-a-org
   package returns 404 and is reported UNKNOWN. There is no auth support yet; `--registry` points
   at a different base URL but sends no token.
@@ -322,7 +322,7 @@ A package that changed hands between the two versions is the highest-signal supp
   heading in the comment. The catalog task lists it as a sixth question and it is not done.
 - **npm lockfileVersion 1 is read but degraded.** v1 files carry no manifest, so "direct" falls
   back to "at the top of `node_modules`" and a warning says so.
-- **Directness for npm is a rule, not a resolver.** A direct dependency that npm was forced to
+- **Directness for npm is a rule rather than a full resolver.** A direct dependency that npm was forced to
   place deeper than the top level (a version conflict with a hoisted copy) is found by falling
   back to the shallowest entry with that name, and a warning is recorded. This has not been seen
   in any of the real lockfiles tested here.
