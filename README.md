@@ -189,8 +189,8 @@ handoff still visible live
   ok    sabotage "always-patch": section 3's direct/transitive check FAILED as it must (exit 1)
 
 11. docs/index.html loads in a real browser and renders from its own script
-        browser checks passed: 47
-        47 passed, 0 failed
+        browser checks passed: 48
+        48 passed, 0 failed
   ok    docs/index.html verified in Chromium at 1280px and 390px
 
 12. docs/index.html is exactly what build-docs.mjs produces from docs/data.json

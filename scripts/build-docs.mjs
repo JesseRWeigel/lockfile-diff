@@ -17,7 +17,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs', 'data.json'), 'utf8'));
 
-const TITLE = 'lockfile-diff — the five questions a reviewer actually asks';
+const TITLE = 'lockfile-diff: the five questions a reviewer actually asks';
 
 const CSS = `
 :root {
@@ -195,10 +195,10 @@ const JS = String.raw`
       var bits = [];
       if (m.removed.length) bits.push('out: ' + m.removed.slice(0, 3).join(', ') + (m.removed.length > 3 ? ' +' + (m.removed.length - 3) : ''));
       if (m.added.length) bits.push('in: ' + m.added.slice(0, 3).join(', ') + (m.added.length > 3 ? ' +' + (m.added.length - 3) : ''));
-      return { text: 'CHANGED \u2014 ' + bits.join('; '), cls: 'handoff' };
+      return { text: 'CHANGED. ' + bits.join('; '), cls: 'handoff' };
     }
     if (m.status === 'publisher-changed') {
-      return { text: 'PUBLISHER CHANGED \u2014 ' + m.publisherBefore + ' \u2192 ' + m.publisherAfter, cls: 'handoff' };
+      return { text: 'PUBLISHER CHANGED. ' + m.publisherBefore + ' \u2192 ' + m.publisherAfter, cls: 'handoff' };
     }
     if (m.status === 'same') return { text: 'unchanged', cls: '' };
     if (m.status === 'new') return { text: 'new: ' + (m.added.slice(0, 3).join(', ') || 'none listed'), cls: '' };
@@ -387,7 +387,8 @@ const JS = String.raw`
 })();
 `;
 
-const html = `<title>${TITLE}</title>
+const html = `<meta charset="utf-8">
+<title>${TITLE}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="A lockfile diff that answers what is new, what changed major, what changed transitively, what changed maintainer, and the install size delta.">
 <style>${CSS}</style>

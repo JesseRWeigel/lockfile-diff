@@ -24,7 +24,7 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const TITLE = 'lockfile-diff — the five questions a reviewer actually asks';
+const TITLE = 'lockfile-diff: the five questions a reviewer actually asks';
 const require_ = createRequire(path.join(ROOT, 'scripts', 'x.js'));
 
 // Most portable first. The sibling-project path is LAST and is a fallback, not the mechanism:
@@ -88,6 +88,8 @@ const probe = await fetch(`${base}/index.html`).then((r) => r.text());
 check(probe.includes(`<title>${TITLE}</title>`),
   `the served bytes are this project's page (title found in ${probe.length} bytes)`);
 check(probe.includes('id="payload"'), 'the served page carries its inlined data payload');
+check(/^<meta charset="utf-8">/.test(probe),
+  'the page declares its charset, so non-ASCII text does not render as mojibake on a static host');
 
 const browser = await playwright.chromium.launch({
   args: ['--no-sandbox', '--disable-dev-shm-usage'],
