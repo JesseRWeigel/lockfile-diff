@@ -42,7 +42,7 @@ const CANDIDATES = [
   // resolves, the check still runs, but a fresh clone elsewhere will correctly fail with the
   // actionable message below rather than silently skipping.
   path.join(ROOT, '..', 'a11y-sweep', 'node_modules', 'playwright-core'),
-  path.join(os.homedir(), 'Projects', 'thousand', 'projects', 'a11y-sweep', 'node_modules', 'playwright-core'),
+  path.join(ROOT, '..', 'a11y-sweep', 'node_modules', 'playwright-core'),
 ];
 let playwright = null;
 for (const candidate of CANDIDATES) {
