@@ -184,7 +184,9 @@ test('CLI refresh recovers cached HTTP failures and reports UNKNOWN in all outpu
     assert.equal(failed.changes[0].maintainer.status, 'unknown');
     assert.match(failed.changes[0].maintainer.reason, /503/);
     assert.match(await cli('--format', 'text'), /UNKNOWN/i);
-    assert.match(await cli('--format', 'md'), /UNKNOWN/i);
+    const markdown = await cli('--format', 'md');
+    assert.match(markdown, /UNKNOWN/i);
+    assert.doesNotMatch(markdown, /No package changed its maintainer/);
     assert.equal(calls, 2, 'outputs reuse the failure backoff');
     healthy = true;
     const recovered = JSON.parse(await cli('--refresh', '--format', 'json'));

@@ -229,10 +229,15 @@ export function renderMarkdown(report, { title = 'Lockfile diff', maxRows = 60 }
     (x) => x.maintainer && (x.maintainer.status === 'changed' || x.maintainer.status === 'publisher-changed'),
   );
   const maintainerUnknown = report.changes.filter((x) => x.maintainer && x.maintainer.status === 'unknown');
-  lines.push(`#### 4. What changed maintainer? (${maintainerChanged.length})`);
+  const comparisonSummary = maintainerUnknown.length > 0
+    ? `${maintainerChanged.length} confirmed; ${maintainerUnknown.length} UNKNOWN`
+    : String(maintainerChanged.length);
+  lines.push(`#### 4. What changed maintainer? (${comparisonSummary})`);
   lines.push('');
   if (maintainerChanged.length === 0) {
-    lines.push('No package changed its maintainer set or its publishing user between the two versions.');
+    lines.push(maintainerUnknown.length > 0
+      ? `No maintainer or publisher changes were confirmed; ${maintainerUnknown.length} comparison(s) are unavailable.`
+      : 'No package changed its maintainer set or its publishing user between the two versions.');
   } else {
     lines.push(
       'A package that changed hands between the two versions is the highest-signal '
