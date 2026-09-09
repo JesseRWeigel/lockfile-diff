@@ -30,6 +30,7 @@ Options
   --title TEXT              heading for the markdown comment
   --cache-dir DIR           registry cache (default: ~/.cache/lockfile-diff)
   --no-registry             skip the registry entirely; maintainer and size become UNKNOWN
+  --refresh                 bypass saved registry entries (incompatible with --offline/--no-registry)
   --offline                 use only the cache; a miss is UNKNOWN, never "no change"
   --registry URL            registry base URL (default: https://registry.npmjs.org)
   --fail-on LIST            comma-separated gates: major, downgrade, maintainer, new, any
@@ -48,6 +49,7 @@ function parseArgs(argv) {
     registry: undefined,
     noRegistry: false,
     offline: false,
+    refresh: false,
     failOn: [],
     maxRows: 60,
     repo: null,
@@ -73,6 +75,7 @@ function parseArgs(argv) {
       case '--registry': opts.registry = next(); break;
       case '--no-registry': opts.noRegistry = true; break;
       case '--offline': opts.offline = true; break;
+      case '--refresh': opts.refresh = true; break;
       case '--fail-on': opts.failOn = next().split(',').map((s) => s.trim()).filter(Boolean); break;
       case '--max-rows': opts.maxRows = Number(next()); break;
       case '--repo': opts.repo = next(); break;
@@ -89,6 +92,9 @@ function parseArgs(argv) {
   }
   if (opts.formatIn && !['npm', 'pnpm'].includes(opts.formatIn)) {
     throw new Error(`--format-in must be npm or pnpm (got "${opts.formatIn}")`);
+  }
+  if (opts.refresh && (opts.offline || opts.noRegistry)) {
+    throw new Error('--refresh cannot be combined with --offline or --no-registry');
   }
   const gates = new Set(['major', 'downgrade', 'maintainer', 'new', 'any']);
   for (const g of opts.failOn) {
@@ -182,6 +188,7 @@ export async function main(argv) {
     const registry = new Registry({
       cacheDir: opts.cacheDir,
       offline: opts.offline,
+      refresh: opts.refresh,
       ...(opts.registry ? { registryUrl: opts.registry } : {}),
     });
     await enrich(report, registry);

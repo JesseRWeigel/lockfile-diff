@@ -1,9 +1,11 @@
+import http from 'node:http';
+import { promisify } from 'node:util';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { execFileSync, spawnSync } from 'node:child_process';
+import { execFile, execFileSync, spawnSync } from 'node:child_process';
 import { CACHE, FIXTURES, ROOT, fixture } from './helpers.js';
 
 const BIN = path.join(ROOT, 'bin', 'lockfile-diff.js');
@@ -147,7 +149,7 @@ test('the shipped GitHub Action workflow and action.yml reference commands that 
   for (const text of [action, workflow]) {
     for (const flag of text.match(/--[a-z-]+/g) ?? []) {
       if (['--fail-on', '--format', '--out', '--repo', '--base', '--head', '--path',
-        '--cache-dir', '--title', '--offline', '--no-registry', '--registry',
+        '--cache-dir', '--title', '--refresh', '--offline', '--no-registry', '--registry',
         '--max-rows', '--format-in', '--help', '--depth', '--no-save', '--body-file',
         '--edit-last', '--create-if-none'].includes(flag)) continue;
       assert.fail(`unrecognised flag ${flag} in an Action file`);
@@ -156,4 +158,45 @@ test('the shipped GitHub Action workflow and action.yml reference commands that 
   assert.match(action, /bin\/lockfile-diff\.js/);
   assert.ok(fs.existsSync(path.join(ROOT, 'bin', 'lockfile-diff.js')));
   void FIXTURES;
+});
+
+
+test('CLI refresh recovers cached HTTP failures and reports UNKNOWN in all output formats', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'lfd-cli-refresh-'));
+  let healthy = false, calls = 0;
+  const server = http.createServer((req, res) => {
+    calls++;
+    res.writeHead(healthy ? 200 : 503, { 'content-type': 'application/json' });
+    res.end(JSON.stringify({ maintainers: [{ name: req.url.endsWith('/1.0.0') ? 'old' : 'new' }], dist: { unpackedSize: 10 } }));
+  });
+  await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
+  try {
+    const files = ['1.0.0', '2.0.0'].map((version) => {
+      const file = path.join(dir, version + '.json');
+      fs.writeFileSync(file, JSON.stringify({ lockfileVersion: 3, packages: {
+        '': { dependencies: { thing: version } }, 'node_modules/thing': { version },
+      } }));
+      return file;
+    });
+    const args = [...files, '--cache-dir', dir, '--registry', `http://127.0.0.1:${server.address().port}`];
+    const cli = async (...extra) => (await promisify(execFile)(process.execPath, [BIN, ...args, ...extra])).stdout;
+    const failed = JSON.parse(await cli('--format', 'json'));
+    assert.equal(failed.changes[0].maintainer.status, 'unknown');
+    assert.match(failed.changes[0].maintainer.reason, /503/);
+    assert.match(await cli('--format', 'text'), /UNKNOWN/i);
+    assert.match(await cli('--format', 'md'), /UNKNOWN/i);
+    assert.equal(calls, 2, 'outputs reuse the failure backoff');
+    healthy = true;
+    const recovered = JSON.parse(await cli('--refresh', '--format', 'json'));
+    assert.equal(recovered.changes[0].maintainer.status, 'changed');
+    assert.equal(calls, 4);
+    for (const incompatible of ['--offline', '--no-registry']) {
+      const result = run([...files, '--refresh', incompatible]);
+      assert.equal(result.code, 1);
+      assert.match(result.err, /cannot be combined/);
+    }
+  } finally {
+    await new Promise((resolve) => server.close(resolve));
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
 });

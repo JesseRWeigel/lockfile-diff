@@ -26,6 +26,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 export const DEFAULT_REGISTRY = 'https://registry.npmjs.org';
+export const SUCCESS_TTL_MS = 24 * 60 * 60 * 1000;
+export const FAILURE_TTL_MS = 60 * 1000;
 
 /** Filesystem-safe name for a cache entry. Scoped names contain a slash. */
 export function cacheKey(name, version) {
@@ -69,6 +71,10 @@ export class Registry {
    * @param {number} options.timeoutMs
    * @param {number} options.concurrency
    * @param {Function} options.fetchImpl injected for tests
+   * @param {Function} options.now clock returning milliseconds since epoch
+   * @param {number} options.successTtlMs successful metadata lifetime (default 24 hours)
+   * @param {number} options.failureTtlMs failure backoff (default 60 seconds)
+   * @param {boolean} options.refresh bypass pre-existing disk entries; incompatible with offline
    */
   constructor({
     cacheDir = null,
@@ -77,7 +83,20 @@ export class Registry {
     timeoutMs = 15000,
     concurrency = 8,
     fetchImpl = globalThis.fetch,
+    now = Date.now,
+    successTtlMs = SUCCESS_TTL_MS,
+    failureTtlMs = FAILURE_TTL_MS,
+    refresh = false,
   } = {}) {
+    if (offline && refresh) throw new Error('refresh cannot be used with offline mode');
+    for (const [name, ttl] of Object.entries({ successTtlMs, failureTtlMs })) {
+      if (!Number.isFinite(ttl) || ttl < 0) throw new Error(`${name} must be finite and nonnegative`);
+    }
+    this.now = now;
+    this.successTtlMs = successTtlMs;
+    this.failureTtlMs = failureTtlMs;
+    this.refresh = refresh;
+    this.memory = new Map();
     this.cacheDir = cacheDir;
     this.offline = offline;
     this.registryUrl = registryUrl.replace(/\/+$/, '');
@@ -97,7 +116,8 @@ export class Registry {
     if (file === null || !fs.existsSync(file)) return null;
     try {
       const parsed = JSON.parse(fs.readFileSync(file, 'utf8'));
-      if (parsed && typeof parsed === 'object' && parsed.status) return parsed;
+      if (parsed?.status === 'unknown' && typeof parsed.reason === 'string') return parsed;
+      if (parsed?.status === 'ok' && parsed.manifest && typeof parsed.manifest === 'object') return parsed;
       return null;
     } catch {
       // A corrupt cache entry is a cache miss, not a crash. Never a silent "no change":
@@ -121,11 +141,22 @@ export class Registry {
     if (this.memo.has(memoKey)) return this.memo.get(memoKey);
     const promise = this.#lookup(name, version);
     this.memo.set(memoKey, promise);
-    return promise;
+    try { return await promise; } finally { this.memo.delete(memoKey); }
+  }
+
+  fresh(record) {
+    if (!record) return false;
+    if (this.offline) return true;
+    const age = this.now() - record.cachedAt;
+    const ttl = record.status === 'ok' ? this.successTtlMs : this.failureTtlMs;
+    return Number.isFinite(record.cachedAt) && age >= 0 && age < ttl;
   }
 
   async #lookup(name, version) {
-    const cached = this.readCache(name, version);
+    const key = `${name}@${version}`;
+    const memory = this.memory.get(key);
+    const disk = this.refresh ? null : this.readCache(name, version);
+    const cached = this.fresh(memory) ? memory : this.fresh(disk) ? disk : null;
     if (cached) {
       this.stats.hits += 1;
       if (cached.status === 'unknown') this.stats.unknown += 1;
@@ -136,12 +167,14 @@ export class Registry {
       return { status: 'unknown', reason: 'offline and not in the cache' };
     }
     let record;
+    let httpStatus = null;
     try {
       const url = `${this.registryUrl}/${name.split('/').map(encodeURIComponent).join('/')}/${encodeURIComponent(version)}`;
       const response = await this.fetchImpl(url, {
         headers: { accept: 'application/json', 'user-agent': 'lockfile-diff' },
         signal: AbortSignal.timeout(this.timeoutMs),
       });
+      httpStatus = response.status;
       if (response.status === 404) {
         record = { status: 'unknown', reason: 'the public registry has no manifest for this version' };
       } else if (!response.ok) {
@@ -153,8 +186,9 @@ export class Registry {
       record = { status: 'unknown', reason: `registry lookup failed: ${err.message}` };
     }
     if (record.status === 'ok') this.stats.fetched += 1; else this.stats.unknown += 1;
-    // Negative results are cached too, so a CI run does not re-ask for a package that will
-    // never resolve. They are cheap to delete and expensive to re-fetch a hundred times.
+    // Backoff applies to all failures, including 404: registries can recover or publish later.
+    record = { ...record, cachedAt: this.now(), httpStatus };
+    this.memory.set(key, record);
     this.writeCache(name, version, record);
     return record;
   }

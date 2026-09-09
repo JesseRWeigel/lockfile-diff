@@ -28,6 +28,10 @@ inputs:
     description: npm registry base URL.
     required: false
     default: https://registry.npmjs.org
+  refresh:
+    description: Bypass saved registry metadata before producing this report.
+    required: false
+    default: 'false'
   comment:
     description: Post the result as a pull request comment. Set to false to only write the file.
     required: false
@@ -58,6 +62,7 @@ runs:
         BASE_REF: ${{ inputs.base-ref || github.event.pull_request.base.sha }}
         HEAD_REF: ${{ inputs.head-ref || github.event.pull_request.head.sha }}
         REGISTRY_URL: ${{ inputs.registry }}
+        REFRESH: ${{ inputs.refresh }}
         TITLE: ${{ inputs.title }}
         ACTION_PATH: ${{ github.action_path }}
       run: |
@@ -65,16 +70,18 @@ runs:
         out="${RUNNER_TEMP}/lockfile-diff.md"
         json="${RUNNER_TEMP}/lockfile-diff.json"
         cache="${RUNNER_TEMP}/lockfile-diff-cache"
+        refresh_args=()
+        if [ "$REFRESH" = "true" ]; then refresh_args+=(--refresh); fi
         # The registry cache is keyed by name@version, so it is safe to reuse across runs and
         # across repositories. actions/cache it if you want to, nothing here depends on it.
         node "${ACTION_PATH}/bin/lockfile-diff.js" \
           --repo . --base "$BASE_REF" --head "$HEAD_REF" --path "$LOCKFILE_PATH" \
           --registry "$REGISTRY_URL" --cache-dir "$cache" \
-          --title "$TITLE" --format md --out "$out"
+          --title "$TITLE" "${refresh_args[@]}" --format md --out "$out"
         node "${ACTION_PATH}/bin/lockfile-diff.js" \
           --repo . --base "$BASE_REF" --head "$HEAD_REF" --path "$LOCKFILE_PATH" \
           --registry "$REGISTRY_URL" --cache-dir "$cache" \
-          --format json --out "$json"
+          --offline --format json --out "$json"
         {
           echo "markdown-file=$out"
           echo "json-file=$json"

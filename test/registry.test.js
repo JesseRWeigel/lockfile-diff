@@ -217,3 +217,75 @@ test('isPlatformSpecific needs both an os/cpu constraint and optionality', () =>
   assert.equal(isPlatformSpecific({ optional: true }), false, 'optional but not constrained');
   assert.equal(isPlatformSpecific(null), false);
 });
+
+
+for (const failure of ['timeout', 429, 503, 404]) {
+  test(`cached ${failure} is retried after bounded backoff in memory and on disk`, async () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'lfd-expiry-'));
+    try {
+      let now = 1000;
+      let calls = 0;
+      const options = {
+        cacheDir: dir, now: () => now, failureTtlMs: 100,
+        fetchImpl: async () => {
+          calls++;
+          if (calls === 1) {
+            if (failure === 'timeout') throw new DOMException('timed out', 'TimeoutError');
+            return { status: failure, ok: false };
+          }
+          return { status: 200, ok: true, json: async () => ({ _npmUser: { name: 'new-owner' } }) };
+        },
+      };
+      const registry = new Registry(options);
+      assert.equal((await registry.manifest('thing', '1')).status, 'unknown');
+      now += 99;
+      assert.equal((await registry.manifest('thing', '1')).status, 'unknown');
+      assert.equal((await new Registry(options).manifest('thing', '1')).status, 'unknown');
+      assert.equal(calls, 1);
+      now += 1;
+      const recovered = await registry.manifest('thing', '1');
+      assert.equal(recovered.status, 'ok');
+      assert.equal(recovered.manifest.publisher, 'new-owner');
+      assert.equal(calls, 2);
+      const disk = JSON.parse(fs.readFileSync(path.join(dir, cacheKey('thing', '1')), 'utf8'));
+      assert.equal(disk.cachedAt, now);
+      assert.equal(disk.httpStatus, 200);
+    } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+  });
+}
+
+test('successful cached metadata expires and refresh bypasses disk cache', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'lfd-expiry-'));
+  try {
+    let now = 1000, calls = 0;
+    const options = { cacheDir: dir, now: () => now, successTtlMs: 100,
+      fetchImpl: async () => ({ status: 200, ok: true, json: async () => ({ _npmUser: { name: `owner-${++calls}` } }) }) };
+    const registry = new Registry(options);
+    assert.equal((await registry.manifest('thing', '1')).manifest.publisher, 'owner-1');
+    now += 100;
+    assert.equal((await registry.manifest('thing', '1')).manifest.publisher, 'owner-2');
+    assert.equal((await new Registry({ ...options, refresh: true }).manifest('thing', '1')).manifest.publisher, 'owner-3');
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
+test('legacy failures expire online while explicit offline snapshots never fetch', async () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'lfd-expiry-'));
+  try {
+    fs.writeFileSync(path.join(dir, cacheKey('thing', '1')), JSON.stringify({ status: 'unknown', reason: 'old outage' }));
+    const offline = new Registry({ cacheDir: dir, offline: true, fetchImpl: () => assert.fail('offline fetched') });
+    assert.equal((await offline.manifest('thing', '1')).reason, 'old outage');
+    const online = new Registry({ cacheDir: dir, fetchImpl: async () => ({ status: 200, ok: true, json: async () => ({}) }) });
+    assert.equal((await online.manifest('thing', '1')).status, 'ok');
+  } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
+test('concurrent lookups share a request even when refresh is enabled', async () => {
+  let calls = 0;
+  const registry = new Registry({ refresh: true, fetchImpl: async () => {
+    calls++; await new Promise((resolve) => setImmediate(resolve));
+    return { status: 200, ok: true, json: async () => ({}) };
+  } });
+  const values = await Promise.all(Array.from({ length: 10 }, () => registry.manifest('thing', '1')));
+  assert.equal(calls, 1);
+  assert.ok(values.every((r) => r.status === 'ok'));
+});

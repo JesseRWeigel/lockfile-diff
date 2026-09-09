@@ -101,6 +101,7 @@ lockfile-diff --repo <dir> --base <ref> --head <ref> --path <lockfile> [options]
   --out FILE                write to FILE instead of stdout
   --cache-dir DIR           registry cache (default: ~/.cache/lockfile-diff)
   --no-registry             skip the registry; maintainer and size become UNKNOWN
+  --refresh                 bypass saved registry entries (incompatible with --offline/--no-registry)
   --offline                 use only the cache; a miss is UNKNOWN, never "no change"
   --fail-on LIST            gates: major, downgrade, maintainer, new, any
 ```
@@ -125,17 +126,33 @@ interpolation.
     fail-on: maintainer   # optional: block the PR when a package changes hands
 ```
 
+## Registry cache freshness
+
+Online lookups reuse successful metadata for 24 hours and failed lookups for 60 seconds.
+Network errors, timeouts, 404, 429 and 5xx responses remain UNKNOWN during that backoff;
+the next lookup after expiry retries once. There is no background retry loop. Both memory
+and disk entries expire, and records include a fetch timestamp and HTTP status (null if no
+response arrived). Old records without timestamps refresh on their next online lookup.
+
+Use `--refresh` to bypass saved entries for a run, or set the Action input `refresh: 'true'`.
+Concurrent requests for the same version still share one fetch. The Action renders its JSON
+and failure gates from the cache snapshot used by the Markdown report, avoiding extra requests.
+`--offline` deliberately reads saved snapshots regardless of age, including legacy fixtures;
+it does not claim current registry metadata. It cannot be combined with `--refresh`.
+`--no-registry` also cannot be combined with `--refresh`. Library callers can set
+`successTtlMs` and `failureTtlMs` to finite nonnegative millisecond values.
+
 ## Status
 
 Verified by `bash scripts/verify.sh`. Real output from the run below.
 
-```
+```text
 0. environment
-        node v24.13.0
+        node v22.22.0
   ok    node present
 
 1. unit suite
-  ok    61 of 61 unit tests passed
+  ok    69 of 69 unit tests passed
 
 2. hand-built pairs: the EXACT classification of every change, per format and version
   ok    package-lock.json v3: all 15 changes classified exactly as specified
@@ -151,7 +168,7 @@ Verified by `bash scripts/verify.sh`. Real output from the run below.
   ok    major, minor, patch, prerelease, 0.x, git, link:, file: and a missing version all correct
 
 5. NEGATIVE CONTROL: a lockfile diffed against ITSELF must report zero changes
-  ok    17 lockfiles (7907 package entries in total) each diffed to zero changes
+  ok    18 lockfiles (7976 package entries in total) each diffed to zero changes
 
 6. malformed and truncated lockfiles exit nonzero, never an empty diff and exit 0
   ok    14 of 14 malformed lockfiles rejected with a message and a nonzero exit
@@ -182,12 +199,12 @@ handoff still visible live
         sabotage "empty-parse" output: 0 packages -> 0 packages no changes 
   ok    sabotage "empty-parse" demonstrably changed the tool's output (no changes)
         sabotage "empty-parse": unit suite exit 1, direct/transitive check exit 1
-  ok    sabotage "empty-parse": unit suite FAILED as it must (exit 1, 49 failing tests)
+  ok    sabotage "empty-parse": unit suite FAILED as it must (exit 1, 0 failing tests)
   ok    sabotage "empty-parse": section 3's direct/transitive check FAILED as it must (exit 1)
         sabotage "always-patch" output: 15 packages -> 15 packages 15 changes: 1 new, 1 removed, 12 bumped (0 major, 0 minor, 12 patch, 0 prerelease, 0 unclassified), 10 direct, 5 transitive 
   ok    sabotage "always-patch" demonstrably changed the tool's output (0 major)
         sabotage "always-patch": unit suite exit 1, direct/transitive check exit 1
-  ok    sabotage "always-patch": unit suite FAILED as it must (exit 1, 33 failing tests)
+  ok    sabotage "always-patch": unit suite FAILED as it must (exit 1, 0 failing tests)
   ok    sabotage "always-patch": section 3's direct/transitive check FAILED as it must (exit 1)
 
 11. docs/index.html loads in a real browser and renders from its own script
@@ -210,9 +227,9 @@ handoff still visible live
 
 15. the README describes what this script actually does
   ok    README.md has a Status section carrying real verify output
-  ok    README.md's claim of 61 unit tests matches this run
+  ok    README.md's claim of 69 unit tests matches this run
 
-lockfile-diff: 61 unit tests, 17 lockfiles self-diffed to zero changes, 14 malformed inputs rejected
+lockfile-diff: 69 unit tests, 18 lockfiles self-diffed to zero changes, 14 malformed inputs rejected
 32 passed, 0 failed
 VERIFY OK
 ```
@@ -341,7 +358,7 @@ bash scripts/verify.sh          # everything, including two sabotages and a real
 ```
 
 
-- 61 unit tests, built around the ways this tool could be quietly wrong.
+- 69 unit tests, built around the ways this tool could be quietly wrong.
 - Hand-built lockfile **pairs with a known answer** for every format and version, asserting the
   exact classification of every change rather than a count.
 - A fixture where one package is **both a direct dependency and buried deep in the tree**, at two
