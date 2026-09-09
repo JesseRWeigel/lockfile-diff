@@ -199,12 +199,12 @@ handoff still visible live
         sabotage "empty-parse" output: 0 packages -> 0 packages no changes 
   ok    sabotage "empty-parse" demonstrably changed the tool's output (no changes)
         sabotage "empty-parse": unit suite exit 1, direct/transitive check exit 1
-  ok    sabotage "empty-parse": unit suite FAILED as it must (exit 1, 0 failing tests)
+  ok    sabotage "empty-parse": unit suite FAILED as it must (exit 1, 25 failing tests)
   ok    sabotage "empty-parse": section 3's direct/transitive check FAILED as it must (exit 1)
         sabotage "always-patch" output: 15 packages -> 15 packages 15 changes: 1 new, 1 removed, 12 bumped (0 major, 0 minor, 12 patch, 0 prerelease, 0 unclassified), 10 direct, 5 transitive 
   ok    sabotage "always-patch" demonstrably changed the tool's output (0 major)
         sabotage "always-patch": unit suite exit 1, direct/transitive check exit 1
-  ok    sabotage "always-patch": unit suite FAILED as it must (exit 1, 0 failing tests)
+  ok    sabotage "always-patch": unit suite FAILED as it must (exit 1, 16 failing tests)
   ok    sabotage "always-patch": section 3's direct/transitive check FAILED as it must (exit 1)
 
 11. docs/index.html loads in a real browser and renders from its own script

@@ -405,7 +405,7 @@ assert by['6.3.0']['scope'] == 'transitive' and by['6.3.0']['kind'] == 'patch'
   if [ "$urc" -eq 0 ]; then
     bad "sabotage \"$name\": the unit suite still passed, so it does not test the engine"
   else
-    ok "sabotage \"$name\": unit suite FAILED as it must (exit $urc, $(grep -cE '^✖' "$TMP/$name-unit.log" || true) failing tests)"
+    ok "sabotage \"$name\": unit suite FAILED as it must (exit $urc, $(grep -cE '^(✖|not ok [0-9]+ -)' "$TMP/$name-unit.log" || true) failing tests)"
   fi
   if [ "$erc" -eq 0 ]; then
     bad "sabotage \"$name\": section 3's direct/transitive check still passed"
