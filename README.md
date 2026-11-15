@@ -112,19 +112,50 @@ an empty diff and exit 0.
 
 ### As a GitHub Action
 
-`action.yml` is a composite action and `.github/workflows/lockfile-diff.yml` is a working
-workflow. It runs on `pull_request` (never `pull_request_target`), needs only
-`pull-requests: write`, and passes every value into the shell through `env` rather than `${{ }}`
-interpolation.
+Add this to `.github/workflows/lockfile-review.yml` **in the repository you want to
+check**. The full commit SHA pins the public Lockfile Diff action; the action reads the
+base and head lockfiles with `git show`, so fetch their history. It does not install
+packages from the pull request.
 
 ```yaml
-- uses: actions/checkout@v4
-  with: { fetch-depth: 0 }
-- uses: ./                # this repository is not published to GitHub, so use a local path
-  with:
-    path: package-lock.json
-    fail-on: maintainer   # optional: block the PR when a package changes hands
+name: Lockfile review
+on:
+  pull_request:
+    paths:
+      - '**/package-lock.json'
+permissions:
+  contents: read
+jobs:
+  lockfile-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Diff the lockfile
+        uses: JesseRWeigel/lockfile-diff@4b1391ee5d092ce64e74726bbe9884b1e66d4985
+        with:
+          path: package-lock.json
+          comment: 'false'
+          # fail-on: maintainer  # optional; summary is still produced before gating
 ```
+
+This workflow uses only a read-only token. Repository settings may require approval
+before a fork PR workflow can run. Read the report in the run's **Summary**; the
+action also exposes `markdown-file`, `json-file`, and `changes` outputs. To use pnpm,
+change both the path filter and the action's `path` to `pnpm-lock.yaml`, or use the
+repository-relative lockfile path for a nested project. Run each lockfile separately.
+
+On trusted same-repository PRs, the action can write a comment if the caller explicitly
+grants `pull-requests: write` and enables `comment: 'true'`. At the pinned revision,
+attempting to comment without that permission can fail the step even though the summary
+has already been written. Keep comments disabled for fork PRs; don't switch to
+`pull_request_target` to get a write token. The workflow in this repository uses
+`uses: ./` to test its own checkout; consuming workflows use the remote reference above.
 
 ## Registry cache freshness
 
