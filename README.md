@@ -10,9 +10,16 @@ were cheap.
 Zero runtime dependencies. Node 20 or newer. The only network access is the public npm registry,
 and every lookup is cached on disk.
 
-```
-npx lockfile-diff old-lock.json new-lock.json
-node bin/lockfile-diff.js --repo . --base main --head HEAD --path package-lock.json --format md
+## Quick start
+
+Run this CLI from a checkout. The npm registry package named `lockfile-diff` is
+a different project; it does not install this CLI. No dependency install is needed.
+
+```sh
+git clone https://github.com/JesseRWeigel/lockfile-diff.git
+cd lockfile-diff
+node bin/lockfile-diff.js /path/to/old-lock.json /path/to/new-lock.json
+node bin/lockfile-diff.js --repo /path/to/repo --base main --head HEAD --path package-lock.json --format md
 ```
 
 ## The five questions, and how each one is answered
@@ -94,8 +101,8 @@ independent count taken from the raw text.
 ## Usage
 
 ```
-lockfile-diff <base-lockfile> <head-lockfile> [options]
-lockfile-diff --repo <dir> --base <ref> --head <ref> --path <lockfile> [options]
+node bin/lockfile-diff.js <base-lockfile> <head-lockfile> [options]
+node bin/lockfile-diff.js --repo <dir> --base <ref> --head <ref> --path <lockfile> [options]
 
   --format md|text|json     output format (default: md)
   --out FILE                write to FILE instead of stdout
