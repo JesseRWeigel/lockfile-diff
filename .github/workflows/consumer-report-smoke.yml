@@ -1,0 +1,104 @@
+name: Pinned consumer report smoke
+'on':
+  push:
+    branches:
+      - codex/document-consumer-action-pin
+    paths:
+      - '.github/workflows/consumer-report-smoke.yml'
+permissions:
+  contents: read
+jobs:
+  reports:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Seed a two-commit synthetic consumer and registry cache
+        id: fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e .git
+          git init --quiet
+          git config user.name 'Lockfile smoke'
+          git config user.email 'fixture@example.invalid'
+          write_fixture() {
+            node - "$1" <<'NODE'
+          const fs = require('node:fs');
+          const p = require('node:path');
+          const versions = process.argv[2];
+          const cache = p.join(process.env.RUNNER_TEMP, 'lockfile-diff-cache');
+          fs.mkdirSync(cache, {recursive: true});
+          for (const [filename, names] of [['first.json',['alpha']], ['second.json',['beta','gamma']]]) {
+            const packages = {'':{name:'report-fixture',dependencies:{}}};
+            for (const name of names) {
+              packages[''].dependencies[name] = versions;
+              packages['node_modules/'+name] = {version:versions};
+              fs.writeFileSync(p.join(cache,name+'@'+versions+'.json'), JSON.stringify({
+                status:'ok',cachedAt:Date.now(),manifest:{
+                  maintainers:['fixture'],publisher:'fixture',unpackedSize:100,fileCount:1,deprecated:null
+                }
+              }));
+            }
+            fs.writeFileSync(filename, JSON.stringify({name:'report-fixture',lockfileVersion:3,packages}));
+          }
+          NODE
+            git add first.json second.json
+            git -c commit.gpgsign=false commit --quiet -m "Synthetic fixture $1"
+          }
+          write_fixture 1.0.0
+          echo "base=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          write_fixture 2.0.0
+          echo "head=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Run pinned action for the first lockfile
+        id: first
+        uses: JesseRWeigel/lockfile-diff@4b1391ee5d092ce64e74726bbe9884b1e66d4985
+        with:
+          base-ref: ${{ steps.fixture.outputs.base }}
+          head-ref: ${{ steps.fixture.outputs.head }}
+          path: first.json
+          title: First synthetic lockfile
+          comment: 'false'
+          registry: http://127.0.0.1:1
+      - name: Preserve first Markdown and JSON before the second call
+        shell: bash
+        env:
+          FIRST_MD: ${{ steps.first.outputs.markdown-file }}
+          FIRST_JSON: ${{ steps.first.outputs.json-file }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/consumer-smoke-snapshot"
+          cp -- "$FIRST_MD" "$RUNNER_TEMP/consumer-smoke-snapshot/first.md"
+          cp -- "$FIRST_JSON" "$RUNNER_TEMP/consumer-smoke-snapshot/first.json"
+      - name: Run pinned action for the second lockfile
+        id: second
+        uses: JesseRWeigel/lockfile-diff@4b1391ee5d092ce64e74726bbe9884b1e66d4985
+        with:
+          base-ref: ${{ steps.fixture.outputs.base }}
+          head-ref: ${{ steps.fixture.outputs.head }}
+          path: second.json
+          title: Second synthetic lockfile
+          comment: 'false'
+          registry: http://127.0.0.1:1
+      - name: Verify distinct saved reports and per-step counts
+        shell: bash
+        env:
+          FIRST_COUNT: ${{ steps.first.outputs.changes }}
+          SECOND_COUNT: ${{ steps.second.outputs.changes }}
+          SECOND_MD: ${{ steps.second.outputs.markdown-file }}
+          SECOND_JSON: ${{ steps.second.outputs.json-file }}
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const assert = require('node:assert/strict');
+          const fs = require('node:fs');
+          const p = require('node:path');
+          const snapshot = p.join(process.env.RUNNER_TEMP, 'consumer-smoke-snapshot');
+          const first = JSON.parse(fs.readFileSync(p.join(snapshot,'first.json'),'utf8'));
+          const second = JSON.parse(fs.readFileSync(process.env.SECOND_JSON,'utf8'));
+          assert.deepEqual([process.env.FIRST_COUNT,process.env.SECOND_COUNT],['1','2']);
+          assert.deepEqual(first.changes.map(x=>x.name),['alpha']);
+          assert.deepEqual(second.changes.map(x=>x.name).sort(),['beta','gamma']);
+          assert.match(fs.readFileSync(p.join(snapshot,'first.md'),'utf8'), /First synthetic lockfile/);
+          assert.match(fs.readFileSync(process.env.SECOND_MD,'utf8'), /Second synthetic lockfile/);
+          console.log('PASS: pinned composite produced two distinct reports; step counts were 1 and 2.');
+          NODE
