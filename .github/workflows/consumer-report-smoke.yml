@@ -51,7 +51,7 @@ jobs:
           echo "head=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
       - name: Run pinned action for the first lockfile
         id: first
-        uses: JesseRWeigel/lockfile-diff@4b1391ee5d092ce64e74726bbe9884b1e66d4985
+        uses: JesseRWeigel/lockfile-diff@e338f03c25722e9b8751ac26cb40fa112fc71ae5
         with:
           base-ref: ${{ steps.fixture.outputs.base }}
           head-ref: ${{ steps.fixture.outputs.head }}
@@ -71,7 +71,7 @@ jobs:
           cp -- "$FIRST_JSON" "$RUNNER_TEMP/consumer-smoke-snapshot/first.json"
       - name: Run pinned action for the second lockfile
         id: second
-        uses: JesseRWeigel/lockfile-diff@4b1391ee5d092ce64e74726bbe9884b1e66d4985
+        uses: JesseRWeigel/lockfile-diff@e338f03c25722e9b8751ac26cb40fa112fc71ae5
         with:
           base-ref: ${{ steps.fixture.outputs.base }}
           head-ref: ${{ steps.fixture.outputs.head }}
