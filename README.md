@@ -137,7 +137,7 @@ jobs:
         with:
           node-version: '20'
       - name: Diff the lockfile
-        uses: JesseRWeigel/lockfile-diff@4b1391ee5d092ce64e74726bbe9884b1e66d4985
+        uses: JesseRWeigel/lockfile-diff@e338f03c25722e9b8751ac26cb40fa112fc71ae5
         with:
           path: package-lock.json
           comment: 'false'
@@ -149,6 +149,9 @@ before a fork PR workflow can run. Read the report in the run's **Summary**; the
 action also exposes `markdown-file`, `json-file`, and `changes` outputs. To use pnpm,
 change both the path filter and the action's `path` to `pnpm-lock.yaml`, or use the
 repository-relative lockfile path for a nested project. Run each lockfile separately.
+When calling the action more than once in one job, copy each Markdown and JSON report to a
+unique path before the next call. The pinned action reuses its report filenames; separate
+jobs also keep the reports isolated.
 
 On trusted same-repository PRs, the action can write a comment if the caller explicitly
 grants `pull-requests: write` and enables `comment: 'true'`. At the pinned revision,
