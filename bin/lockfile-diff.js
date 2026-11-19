@@ -11,6 +11,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { LockfileError } from '../src/errors.js';
 import { parseLockfileAs } from '../src/parse.js';
 import { diffLockfiles } from '../src/diff.js';
@@ -215,7 +216,18 @@ export async function main(argv) {
   return 0;
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+function isMain() {
+  if (!process.argv[1]) return false;
+  try {
+    // Node's module URL encodes path characters and may resolve a bin symlink.
+    return fs.realpathSync(fileURLToPath(import.meta.url)) === fs.realpathSync(process.argv[1]);
+  } catch {
+    // Importers may have no file-backed entry point.
+    return false;
+  }
+}
+
+if (isMain()) {
   main(process.argv.slice(2)).then((code) => { process.exitCode = code; }).catch((err) => {
     process.stderr.write(`lockfile-diff: ${err.stack || err.message}\n`);
     process.exitCode = 1;
