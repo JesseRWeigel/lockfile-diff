@@ -99,8 +99,8 @@ runs:
         BODY_FILE: ${{ steps.diff.outputs.markdown-file }}
       run: |
         set -euo pipefail
-        # Every value reaching the shell comes through env, never through ${{ }} interpolation
-        # inside the script, which is how workflow command injection happens.
+        # Pass values through env. Do not interpolate Actions expressions into this script:
+        # that can enable workflow command injection.
         gh pr comment "$PR_NUMBER" --body-file "$BODY_FILE" --edit-last --create-if-none
 
     - name: Apply the failure gates
