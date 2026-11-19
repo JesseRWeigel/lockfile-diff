@@ -67,8 +67,9 @@ runs:
         ACTION_PATH: ${{ github.action_path }}
       run: |
         set -euo pipefail
-        out="${RUNNER_TEMP}/lockfile-diff.md"
-        json="${RUNNER_TEMP}/lockfile-diff.json"
+        reports="$(mktemp -d "${RUNNER_TEMP}/lockfile-diff-reports.XXXXXXXX")"
+        out="$reports/lockfile-diff.md"
+        json="$reports/lockfile-diff.json"
         cache="${RUNNER_TEMP}/lockfile-diff-cache"
         refresh_args=()
         if [ "$REFRESH" = "true" ]; then refresh_args+=(--refresh); fi
