@@ -1,0 +1,38 @@
+name: Lockfile CLI regression
+
+'on':
+  pull_request:
+    paths:
+      - bin/**
+      - src/**
+      - test/**
+      - package.json
+      - .github/workflows/cli-regression.yml
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            node: '20'
+          - os: windows-latest
+            node: '24'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Run CLI entry point regressions
+        run: node --test --test-name-pattern 'CLI entry point|importing the CLI' test/cli.test.js
+      - name: Run the full suite on Linux
+        if: runner.os == 'Linux'
+        run: npm test
