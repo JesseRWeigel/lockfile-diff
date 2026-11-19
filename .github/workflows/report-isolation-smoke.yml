@@ -1,0 +1,144 @@
+name: Lockfile report isolation smoke
+'on':
+  pull_request:
+    paths:
+      - action.yml
+      - .github/workflows/report-isolation-smoke.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  isolation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Seed synthetic lockfiles and shared metadata
+        id: fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --quiet
+          export GIT_INDEX_FILE="$RUNNER_TEMP/isolation-fixture.index"
+          export GIT_AUTHOR_NAME='Smoke fixture' GIT_AUTHOR_EMAIL='fixture@example.invalid'
+          export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME" GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+          fixture="$(mktemp -d "$RUNNER_TEMP/lockfile-fixture.XXXXXXXX")"
+          for version in 1.0.0 2.0.0; do
+            node - "$fixture" "$version" <<'NODE'
+          const fs = require('node:fs');
+          const p = require('node:path');
+          const [dir, version] = process.argv.slice(2);
+          const cache = p.join(process.env.RUNNER_TEMP, 'lockfile-diff-cache');
+          fs.mkdirSync(cache, {recursive: true});
+          for (const [file, names] of [['first.json',['alpha']], ['second.json',['beta','gamma']]]) {
+            const packages = {'':{name:'smoke',dependencies:{}}};
+            for (const name of names) {
+              packages[''].dependencies[name] = version;
+              packages['node_modules/'+name] = {version};
+              const meta = {status:'ok',cachedAt:Date.now(),manifest:{
+                maintainers:['fixture'],publisher:'fixture',unpackedSize:100,fileCount:1,deprecated:null
+              }};
+              fs.writeFileSync(p.join(cache,name+'@'+version+'.json'), JSON.stringify(meta));
+            }
+            fs.writeFileSync(p.join(dir,file), JSON.stringify({name:'smoke',lockfileVersion:3,packages}));
+          }
+          NODE
+            for file in first.json second.json; do
+              blob="$(git hash-object -w "$fixture/$file")"
+              git update-index --add --cacheinfo "100644,$blob,$file"
+            done
+            tree="$(git write-tree)"
+            if [[ "$version" == 1.0.0 ]]; then
+              base="$(git commit-tree "$tree" -m Synthetic-base)"
+            else
+              head="$(git commit-tree "$tree" -p "$base" -m Synthetic-head)"
+            fi
+          done
+          printf 'base=%s\nhead=%s\n' "$base" "$head" >> "$GITHUB_OUTPUT"
+          (cd "$RUNNER_TEMP/lockfile-diff-cache" && sha256sum -- *.json) > "$RUNNER_TEMP/isolation-cache.sha256"
+
+      - name: Save first report
+        id: first
+        uses: ./
+        with:
+          base-ref: ${{ steps.fixture.outputs.base }}
+          head-ref: ${{ steps.fixture.outputs.head }}
+          path: first.json
+          title: Isolation fixture alpha
+          comment: 'false'
+          registry: http://127.0.0.1:1
+
+      - name: Snapshot first report to prove its original bytes survive
+        shell: bash
+        env:
+          FIRST_JSON: ${{ steps.first.outputs.json-file }}
+          FIRST_MD: ${{ steps.first.outputs.markdown-file }}
+        run: |
+          set -euo pipefail
+          sha256sum -- "$FIRST_JSON" "$FIRST_MD" > "$RUNNER_TEMP/isolation-first.sha256"
+
+      - name: Save second report
+        id: second
+        uses: ./
+        with:
+          base-ref: ${{ steps.fixture.outputs.base }}
+          head-ref: ${{ steps.fixture.outputs.head }}
+          path: second.json
+          title: Isolation fixture beta gamma
+          comment: 'false'
+          registry: http://127.0.0.1:1
+
+      - name: Demonstrate the requested gate fails
+        id: gated
+        continue-on-error: true
+        uses: ./
+        with:
+          base-ref: ${{ steps.fixture.outputs.base }}
+          head-ref: ${{ steps.fixture.outputs.head }}
+          path: first.json
+          title: Isolation gated alpha
+          fail-on: any
+          comment: 'false'
+          registry: http://127.0.0.1:1
+
+      - name: Verify the original outputs survived the other invocations
+        shell: bash
+        env:
+          A_MD: ${{ steps.first.outputs.markdown-file }}
+          A_JSON: ${{ steps.first.outputs.json-file }}
+          A_COUNT: ${{ steps.first.outputs.changes }}
+          B_MD: ${{ steps.second.outputs.markdown-file }}
+          B_JSON: ${{ steps.second.outputs.json-file }}
+          B_COUNT: ${{ steps.second.outputs.changes }}
+          GATE_OUTCOME: ${{ steps.gated.outcome }}
+          GATE_CONCLUSION: ${{ steps.gated.conclusion }}
+        run: |
+          set -euo pipefail
+          sha256sum --check --status "$RUNNER_TEMP/isolation-first.sha256"
+          (
+            cd "$RUNNER_TEMP/lockfile-diff-cache"
+            sha256sum -- *.json | diff - "$RUNNER_TEMP/isolation-cache.sha256"
+          )
+          node <<'NODE'
+          const assert = require('node:assert/strict');
+          const fs = require('node:fs');
+          const p = require('node:path');
+          const { A_MD, A_JSON, A_COUNT, B_MD, B_JSON, B_COUNT, RUNNER_TEMP, GATE_OUTCOME, GATE_CONCLUSION } = process.env;
+          const paths = [A_MD, A_JSON, B_MD, B_JSON].map(x => fs.realpathSync(x));
+          assert.equal(new Set(paths).size, 4);
+          const [aMd, aJson, bMd, bJson] = paths;
+          const temp = fs.realpathSync(RUNNER_TEMP);
+          for (const out of paths) assert(p.relative(temp, out).startsWith('lockfile-diff-reports.'));
+          assert.equal(p.dirname(aMd), p.dirname(aJson));
+          assert.equal(p.dirname(bMd), p.dirname(bJson));
+          assert.notEqual(p.dirname(aMd), p.dirname(bMd));
+          assert.deepEqual([A_COUNT, B_COUNT], ['1', '2']);
+          assert.deepEqual([GATE_OUTCOME, GATE_CONCLUSION], ['failure', 'success']);
+          assert.deepEqual(JSON.parse(fs.readFileSync(aJson)).changes.map(x=>x.name), ['alpha']);
+          assert.deepEqual(JSON.parse(fs.readFileSync(bJson)).changes.map(x=>x.name).sort(), ['beta', 'gamma']);
+          assert.match(fs.readFileSync(aMd, 'utf8'), /^### Isolation fixture alpha$/m);
+          assert.match(fs.readFileSync(bMd, 'utf8'), /^### Isolation fixture beta gamma$/m);
+          console.log('PASS: four distinct original paths, first report unchanged, shared cache unchanged, gate failed as expected.');
+          NODE
