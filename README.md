@@ -10,9 +10,16 @@ were cheap.
 Zero runtime dependencies. Node 20 or newer. The only network access is the public npm registry,
 and every lookup is cached on disk.
 
-```
-npx lockfile-diff old-lock.json new-lock.json
-node bin/lockfile-diff.js --repo . --base main --head HEAD --path package-lock.json --format md
+## Quick start
+
+Run this CLI from a checkout. The npm registry package named `lockfile-diff` is
+a different project; it does not install this CLI. No dependency install is needed.
+
+```sh
+git clone https://github.com/JesseRWeigel/lockfile-diff.git
+cd lockfile-diff
+node bin/lockfile-diff.js /path/to/old-lock.json /path/to/new-lock.json
+node bin/lockfile-diff.js --repo /path/to/repo --base main --head HEAD --path package-lock.json --format md
 ```
 
 ## The five questions, and how each one is answered
@@ -94,8 +101,8 @@ independent count taken from the raw text.
 ## Usage
 
 ```
-lockfile-diff <base-lockfile> <head-lockfile> [options]
-lockfile-diff --repo <dir> --base <ref> --head <ref> --path <lockfile> [options]
+node bin/lockfile-diff.js <base-lockfile> <head-lockfile> [options]
+node bin/lockfile-diff.js --repo <dir> --base <ref> --head <ref> --path <lockfile> [options]
 
   --format md|text|json     output format (default: md)
   --out FILE                write to FILE instead of stdout
@@ -112,22 +119,21 @@ an empty diff and exit 0.
 
 ### As a GitHub Action
 
-Add this to `.github/workflows/lockfile-review.yml` **in the repository you want to
-check**. The full commit SHA pins the public Lockfile Diff action; the action reads the
-base and head lockfiles with `git show`, so fetch their history. It does not install
-packages from the pull request.
+Add this workflow to `.github/workflows/lockfile-review.yml` in the repository
+whose root `package-lock.json` you want to review. The pinned Action reads the
+base and head lockfiles from Git; it does not install their dependencies.
 
 ```yaml
 name: Lockfile review
-on:
+'on':
   pull_request:
     paths:
-      - '**/package-lock.json'
+      - package-lock.json
 permissions:
   contents: read
 jobs:
   lockfile-review:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
@@ -135,30 +141,25 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
       - name: Diff the lockfile
-        uses: JesseRWeigel/lockfile-diff@e338f03c25722e9b8751ac26cb40fa112fc71ae5
+        uses: JesseRWeigel/lockfile-diff@f826152d9769d2bee085ed15b67ab328fc669c9b
         with:
           path: package-lock.json
           comment: 'false'
-          # fail-on: maintainer  # optional; summary is still produced before gating
 ```
 
-This workflow uses only a read-only token. Repository settings may require approval
-before a fork PR workflow can run. Read the report in the run's **Summary**; the
-action also exposes `markdown-file`, `json-file`, and `changes` outputs. To use pnpm,
-change both the path filter and the action's `path` to `pnpm-lock.yaml`, or use the
-repository-relative lockfile path for a nested project. Run each lockfile separately.
-When calling the action more than once in one job, copy each Markdown and JSON report to a
-unique path before the next call. The pinned action reuses its report filenames; separate
-jobs also keep the reports isolated.
+Read the report in the run's **Summary**. GitHub may require maintainer approval
+before it starts a fork PR run. For pnpm or a nested project, replace both the
+workflow path filter and the Action's `path` with the repository-relative
+lockfile path. Run the Action once per lockfile; each invocation has distinct
+`markdown-file` and `json-file` outputs, plus a `changes` count.
 
-On trusted same-repository PRs, the action can write a comment if the caller explicitly
-grants `pull-requests: write` and enables `comment: 'true'`. At the pinned revision,
-attempting to comment without that permission can fail the step even though the summary
-has already been written. Keep comments disabled for fork PRs; don't switch to
-`pull_request_target` to get a write token. The workflow in this repository uses
-`uses: ./` to test its own checkout; consuming workflows use the remote reference above.
+If you want comments on trusted same-repository PRs, enable `comment: 'true'`
+and grant `pull-requests: write` for that workflow. Keep the read-only workflow
+above for forks; don't switch to `pull_request_target` to get a write token.
+This project's own test workflows use `uses: ./` to run the checked-out Action.
+Other repositories use the pinned reference above.
 
 ## Registry cache freshness
 

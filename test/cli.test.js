@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { execFile, execFileSync, spawnSync } from 'node:child_process';
 import { CACHE, FIXTURES, ROOT, fixture } from './helpers.js';
 
@@ -26,6 +27,46 @@ test('two lockfile paths produce a markdown comment and exit 0', () => {
   assert.equal(r.code, 0, r.err);
   assert.match(r.out, /### Lockfile diff/);
   assert.match(r.out, /#### 5\. Total install size delta/);
+});
+
+test('the CLI entry point runs from a checkout path with URL-encoded characters', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'lfd space #% café-'));
+  try {
+    fs.copyFileSync(path.join(ROOT, 'package.json'), path.join(dir, 'package.json'));
+    for (const part of ['bin', 'src']) {
+      fs.cpSync(path.join(ROOT, part), path.join(dir, part), { recursive: true });
+    }
+    const result = spawnSync(process.execPath, [path.join(dir, 'bin', 'lockfile-diff.js'),
+      fixture('npm-v3/base.json'), fixture('npm-v3/head.json'), ...OFFLINE, '--format', 'json'],
+    { encoding: 'utf8' });
+    assert.equal(result.status, 0, result.stderr);
+    assert.notEqual(result.stdout, '', 'the CLI exited without producing a report');
+    assert.equal(JSON.parse(result.stdout).counts.total, 15);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('the CLI entry point runs through a bin symlink', { skip: process.platform === 'win32' }, () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'lfd-bin-'));
+  try {
+    const link = path.join(dir, 'lockfile-diff');
+    fs.symlinkSync(BIN, link);
+    const result = spawnSync(process.execPath, [link, '--help'], { encoding: 'utf8' });
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, /^lockfile-diff - answer/);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('importing the CLI exports main without running it', () => {
+  const script = `import { main } from ${JSON.stringify(pathToFileURL(BIN).href)};
+    console.log(typeof main);`;
+  const result = spawnSync(process.execPath, ['--input-type=module', '-e', script], { encoding: 'utf8' });
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(result.stdout.trim(), 'function');
+  assert.equal(result.stderr, '');
 });
 
 test('--format json emits a parseable report with the fields the Action needs', () => {
