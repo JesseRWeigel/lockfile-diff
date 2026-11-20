@@ -119,19 +119,47 @@ an empty diff and exit 0.
 
 ### As a GitHub Action
 
-`action.yml` is a composite action and `.github/workflows/lockfile-diff.yml` is a working
-workflow. It runs on `pull_request` (never `pull_request_target`), needs only
-`pull-requests: write`, and passes every value into the shell through `env` rather than `${{ }}`
-interpolation.
+Add this workflow to `.github/workflows/lockfile-review.yml` in the repository
+whose root `package-lock.json` you want to review. The pinned Action reads the
+base and head lockfiles from Git; it does not install their dependencies.
 
 ```yaml
-- uses: actions/checkout@v4
-  with: { fetch-depth: 0 }
-- uses: ./                # this repository is not published to GitHub, so use a local path
-  with:
-    path: package-lock.json
-    fail-on: maintainer   # optional: block the PR when a package changes hands
+name: Lockfile review
+'on':
+  pull_request:
+    paths:
+      - package-lock.json
+permissions:
+  contents: read
+jobs:
+  lockfile-review:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Diff the lockfile
+        uses: JesseRWeigel/lockfile-diff@f826152d9769d2bee085ed15b67ab328fc669c9b
+        with:
+          path: package-lock.json
+          comment: 'false'
 ```
+
+Read the report in the run's **Summary**. GitHub may require maintainer approval
+before it starts a fork PR run. For pnpm or a nested project, replace both the
+workflow path filter and the Action's `path` with the repository-relative
+lockfile path. Run the Action once per lockfile; each invocation has distinct
+`markdown-file` and `json-file` outputs, plus a `changes` count.
+
+If you want comments on trusted same-repository PRs, enable `comment: 'true'`
+and grant `pull-requests: write` for that workflow. Keep the read-only workflow
+above for forks; don't switch to `pull_request_target` to get a write token.
+This project's own test workflows use `uses: ./` to run the checked-out Action.
+Other repositories use the pinned reference above.
 
 ## Registry cache freshness
 
